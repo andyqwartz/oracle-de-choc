@@ -1,0 +1,24 @@
+{
+  "name": "oracle-de-choc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "build-index": "node scripts/build-index.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.0.0",
+    "@orama/orama": "^2.0.0",
+    "@orama/plugin-data-persistence": "^2.0.0",
+    "wllama": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "gpt-tokenizer": "^2.1.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  }
+}
