@@ -1,13 +1,15 @@
 // src/ui/SettingsDrawer.ts
-// Right panel: generates settings controls from the schema (section 6).
-// One generic component driven by the schema — not nine hand-written controls.
+// Right panel: model status + settings generated from the schema, grouped by section.
 
 import { SETTINGS_SCHEMA, type SettingsSchema } from '../settings/schema';
-import { getSettings, setSetting } from '../settings/store';
+import { getSettings, setSetting, resetSettings } from '../settings/store';
+import { CONFIG } from '../config';
+import type { ModelStatus } from '../types';
 
 export class SettingsDrawer {
   private container: HTMLElement;
-  private schema: SettingsSchema = SETTINGS_SCHEMA;
+  private modelPanel!: HTMLElement;
+  private onReloadModel: (() => void) | null = null;
 
   constructor() {
     this.container = document.createElement('aside');
@@ -17,49 +19,165 @@ export class SettingsDrawer {
   }
 
   render(): HTMLElement {
-    this.container.innerHTML = '<h2>Paramètres</h2>';
+    this.container.innerHTML = `
+      <div class="settings-header">
+        <h2>Paramètres</h2>
+        <button class="icon-btn" id="settings-close" aria-label="Fermer les paramètres"><span class="icon">✕</span></button>
+      </div>
 
-    for (const [key, spec] of Object.entries(this.schema)) {
-      const row = document.createElement('div');
-      row.className = 'setting-row';
+      <section aria-label="Modèle">
+        <div class="settings-section-title">Modèle</div>
+        <div class="model-panel" id="model-panel"></div>
+      </section>
 
-      const label = document.createElement('label');
-      label.textContent = key;
-      label.setAttribute('for', `setting-${key}`);
-      row.appendChild(label);
+      <section aria-label="Génération">
+        <div class="settings-section-title">Génération</div>
+        <div class="setting-group" id="group-generation"></div>
+      </section>
 
-      const currentValue = getSettings()[key as keyof typeof SETTINGS_SCHEMA];
+      <section aria-label="Recherche">
+        <div class="settings-section-title">Recherche</div>
+        <div class="setting-group" id="group-rag"></div>
+      </section>
 
-      switch (spec.type) {
-        case 'number':
-          this.renderNumberControl(row, key, spec, currentValue);
-          break;
+      <section aria-label="Système">
+        <div class="settings-section-title">Système</div>
+        <div class="setting-group" id="group-system"></div>
+      </section>
+    `;
 
-        case 'select':
-          this.renderSelectControl(row, key, spec, currentValue);
-          break;
+    this.modelPanel = this.container.querySelector('#model-panel')!;
+    this.renderModelPanel({ state: 'idle' as const, progress: 0 });
+    this.renderSettings();
 
-        case 'textarea':
-          this.renderTextareaControl(row, key, spec, currentValue);
-          break;
-
-        case 'boolean':
-          this.renderToggleControl(row, key, spec, currentValue);
-          break;
-      }
-
-      this.container.appendChild(row);
-    }
+    this.container.querySelector('#settings-close')!.addEventListener('click', () => {
+      this.collapse();
+    });
 
     return this.container;
   }
 
-  private renderNumberControl(
+  setModelStatus(status: ModelStatus) {
+    this.renderModelPanel(status);
+  }
+
+  onReloadModelRequested(cb: () => void) {
+    this.onReloadModel = cb;
+  }
+
+  private renderModelPanel(status: ModelStatus) {
+    const pct = Math.round(status.progress * 100);
+
+    let progressHtml = '';
+    if (status.state === 'loading') {
+      const label =
+        status.phase === 'download'
+          ? `Téléchargement${status.totalMB ? ` · ${status.loadedMB}/${status.totalMB} Mo` : ''}`
+          : 'Chargement en mémoire…';
+      progressHtml = `
+        <div class="model-progress">
+          <div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
+          <div class="model-progress-label">${label} · ${pct}%</div>
+        </div>`;
+    }
+
+    this.modelPanel.innerHTML = `
+      <div class="model-row"><span class="k">Modèle</span><span class="v">Qwen2.5-0.5B · Q4_K_M</span></div>
+      <div class="model-row"><span class="k">Statut</span><span class="v">${this.fmtState(status.state)}</span></div>
+      <div class="model-row"><span class="k">Index</span><span class="v">242 épisodes</span></div>
+      ${progressHtml}
+      <div class="btn-row">
+        <button class="btn" id="reload-model" ${status.state === 'loading' ? 'disabled' : ''}>Recharger le modèle</button>
+      </div>
+    `;
+
+    this.modelPanel.querySelector('#reload-model')?.addEventListener('click', () => {
+      this.onReloadModel?.();
+    });
+  }
+
+  private fmtState(s: ModelStatus['state']): string {
+    const map: Record<ModelStatus['state'], string> = {
+      idle: 'En attente',
+      loading: 'Chargement…',
+      ready: 'Prêt',
+      error: 'Erreur',
+    };
+    return map[s];
+  }
+
+  private renderSettings() {
+    const groups: Record<string, string[]> = {
+      generation: [],
+      rag: [],
+      system: [],
+    };
+
+    const genKeys = ['temperature', 'top_k', 'top_p', 'repeat_penalty', 'n_predict', 'n_ctx'];
+    const ragKeys = ['ragEnabled', 'ragTopK'];
+    const sysKeys = ['systemPrompt'];
+
+    for (const k of genKeys) groups.generation.push(k);
+    for (const k of ragKeys) groups.rag.push(k);
+    for (const k of sysKeys) groups.system.push(k);
+
+    for (const [groupName, keys] of Object.entries(groups)) {
+      const target = this.container.querySelector(`#group-${groupName}`)!;
+      for (const key of keys) {
+        const spec = (this.schema as any)[key];
+        const row = document.createElement('div');
+        row.className = 'setting-row';
+
+        const label = document.createElement('label');
+        label.textContent = this.fmtKey(key);
+        label.setAttribute('for', `setting-${key}`);
+        row.appendChild(label);
+
+        const currentValue = getSettings()[key as keyof typeof SETTINGS_SCHEMA];
+        this.renderControl(row, key, spec, currentValue);
+        target.appendChild(row);
+      }
+    }
+  }
+
+  private fmtKey(key: string): string {
+    const map: Record<string, string> = {
+      temperature: 'Température',
+      top_k: 'Top K',
+      top_p: 'Top P',
+      repeat_penalty: 'Pénalité de répétition',
+      n_predict: 'Max tokens',
+      n_ctx: 'Contexte (n_ctx)',
+      ragEnabled: 'Recherche RAG',
+      ragTopK: 'Nb d’extraits (topK)',
+      systemPrompt: 'Prompt système',
+    };
+    return map[key] ?? key;
+  }
+
+  private renderControl(
     row: HTMLElement,
     key: string,
-    spec: Extract<SettingsSchema[keyof SettingsSchema], { type: 'number' }>,
+    spec: any,
     currentValue: unknown
   ) {
+    switch (spec.type) {
+      case 'number':
+        this.renderNumberControl(row, key, spec, currentValue);
+        break;
+      case 'select':
+        this.renderSelectControl(row, key, spec, currentValue);
+        break;
+      case 'textarea':
+        this.renderTextareaControl(row, key, spec, currentValue);
+        break;
+      case 'boolean':
+        this.renderToggleControl(row, key, spec, currentValue);
+        break;
+    }
+  }
+
+  private renderNumberControl(row: HTMLElement, key: string, spec: any, currentValue: unknown) {
     const input = document.createElement('input');
     input.type = 'range';
     input.id = `setting-${key}`;
@@ -82,74 +200,55 @@ export class SettingsDrawer {
     row.appendChild(valueDisplay);
   }
 
-  private renderSelectControl(
-    row: HTMLElement,
-    key: string,
-    spec: Extract<SettingsSchema[keyof SettingsSchema], { type: 'select' }>,
-    currentValue: unknown
-  ) {
+  private renderSelectControl(row: HTMLElement, key: string, spec: any, currentValue: unknown) {
     const select = document.createElement('select');
     select.id = `setting-${key}`;
-
     for (const opt of spec.options) {
       const option = document.createElement('option');
       option.value = String(opt);
       option.textContent = String(opt);
-      if (opt === (currentValue ?? spec.default)) {
-        option.selected = true;
-      }
+      if (opt === (currentValue ?? spec.default)) option.selected = true;
       select.appendChild(option);
     }
-
-    select.addEventListener('change', () => {
-      setSetting(key as any, parseInt(select.value, 10));
-    });
-
+    select.addEventListener('change', () => setSetting(key as any, parseInt(select.value, 10)));
     row.appendChild(select);
   }
 
-  private renderTextareaControl(
-    row: HTMLElement,
-    key: string,
-    spec: Extract<SettingsSchema[keyof SettingsSchema], { type: 'textarea' }>,
-    currentValue: unknown
-  ) {
+  private renderTextareaControl(row: HTMLElement, key: string, spec: any, currentValue: unknown) {
     const textarea = document.createElement('textarea');
     textarea.id = `setting-${key}`;
     textarea.value = String(currentValue ?? spec.default);
-    textarea.rows = 4;
-
-    textarea.addEventListener('input', () => {
-      setSetting(key as any, textarea.value);
-    });
-
+    textarea.rows = 5;
+    textarea.addEventListener('input', () => setSetting(key as any, textarea.value));
     row.appendChild(textarea);
   }
 
-  private renderToggleControl(
-    row: HTMLElement,
-    key: string,
-    spec: Extract<SettingsSchema[keyof SettingsSchema], { type: 'boolean' }>,
-    currentValue: unknown
-  ) {
+  private renderToggleControl(row: HTMLElement, key: string, spec: any, currentValue: unknown) {
     const labelWrapper = document.createElement('label');
     labelWrapper.className = 'toggle';
-
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.id = `setting-${key}`;
     input.checked = Boolean(currentValue ?? spec.default);
-
     const slider = document.createElement('span');
     slider.className = 'slider';
-
     labelWrapper.appendChild(input);
     labelWrapper.appendChild(slider);
-
-    input.addEventListener('change', () => {
-      setSetting(key as any, input.checked);
-    });
-
+    input.addEventListener('change', () => setSetting(key as any, input.checked));
     row.appendChild(labelWrapper);
+  }
+
+  private schema: SettingsSchema = SETTINGS_SCHEMA;
+
+  collapse() {
+    this.container.classList.add('collapsed');
+  }
+
+  expand() {
+    this.container.classList.remove('collapsed');
+  }
+
+  isCollapsed(): boolean {
+    return this.container.classList.contains('collapsed');
   }
 }

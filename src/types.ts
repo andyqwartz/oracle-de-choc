@@ -20,6 +20,16 @@ export interface GenerationParams {
   n_ctx: number;
 }
 
+export type ModelState = 'idle' | 'loading' | 'ready' | 'error';
+
+export interface ModelStatus {
+  state: ModelState;
+  progress: number; // 0..1 for download/load
+  loadedMB?: number;
+  totalMB?: number;
+  phase?: string; // 'download' | 'load' | ''
+}
+
 export interface EpisodeInfo {
   id: string;
   filename: string;

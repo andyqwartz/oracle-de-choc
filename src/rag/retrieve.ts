@@ -1,10 +1,14 @@
 // src/rag/retrieve.ts
 import { search } from '@orama/orama';
-import type { AnyOrama } from '@orama/orama';
 import { embedQuery } from './embedQuery';
 import type { RagChunk } from '../types';
 
-export async function retrieve(db: AnyOrama, query: string, topK: number): Promise<RagChunk[]> {
+export async function retrieve(
+  db: any,
+  query: string,
+  topK: number,
+  episode?: string | null
+): Promise<RagChunk[]> {
   const embedding = await embedQuery(query);
 
   const results = await search(db, {
@@ -14,6 +18,7 @@ export async function retrieve(db: AnyOrama, query: string, topK: number): Promi
     // MiniLM-384 cosine scores sit around 0.4–0.6. Let topK decide instead.
     similarity: 0,
     limit: topK,
+    ...(episode ? { where: { episode } } : {}),
   });
 
   return results.hits.map((hit: any) => ({

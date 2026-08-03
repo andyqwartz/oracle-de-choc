@@ -1,31 +1,68 @@
-/* src/ui/styles/tokens.css */
-/* Single source of truth for all CSS variables. */
-/* No color or size value appears elsewhere in the codebase. */
+/* src/ui/styles/tokens.css
+   Design tokens — single source of truth. No raw color/size elsewhere in the codebase. */
 
 :root {
-  --color-bg: #1a1a1a;
-  --color-bg-secondary: #242424;
-  --color-bg-elevated: #2a2a2a;
+  /* ---- Surfaces & neutrals ---- */
+  --color-bg: #141311;
+  --color-bg-secondary: #1c1a17;
+  --color-bg-elevated: #252219;
+  --color-bg-hover: #2d291d;
+  --color-bg-active: #36301f;
+  --color-border: #322d20;
+  --color-border-strong: #4a4230;
+
+  /* ---- Accent (brass / gold) ---- */
   --color-accent: #c9a96e;
-  --color-accent-hover: #d4b87a;
-  --color-text: #e0e0e0;
-  --color-text-muted: #888;
-  --color-border: #3a3a3a;
-  --color-error: #e05252;
-  --color-success: #5cb85c;
+  --color-accent-hover: #d9bd83;
+  --color-accent-soft: rgba(201, 169, 110, 0.12);
+  --color-accent-soft-strong: rgba(201, 169, 110, 0.22);
+  --color-accent-contrast: #141311;
 
+  /* ---- Text ---- */
+  --color-text: #eae6dc;
+  --color-text-muted: #a8a194;
+  --color-text-dim: #7d7669;
+  --color-text-inverse: #141311;
+
+  /* ---- Status ---- */
+  --color-success: #6fbf73;
+  --color-warning: #d9a13b;
+  --color-error: #e0645a;
+  --color-info: #6fa3d9;
+
+  /* ---- Typography ---- */
   --font-display: 'Fraunces', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
+  /* ---- Spacing scale ---- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
+  --space-7: 48px;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* ---- Radii ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  /* ---- Layout dims ---- */
+  --sidebar-width: 280px;
+  --drawer-width: 320px;
+  --topbar-height: 56px;
+
+  /* ---- Motion ---- */
+  --dur-fast: 120ms;
+  --dur-med: 220ms;
+  --dur-slow: 380ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }

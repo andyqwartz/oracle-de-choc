@@ -2,7 +2,7 @@
 // Public API for the rest of the app. Encapsulates the Web Worker
 // and exposes init(), generate(), abort().
 
-import type { ChatMessage, GenerationParams } from '../types';
+import type { ChatMessage, GenerationParams, ModelStatus } from '../types';
 
 interface WorkerMessage {
   type: string;
@@ -11,6 +11,7 @@ interface WorkerMessage {
   total?: number;
   text?: string;
   message?: string;
+  status?: ModelStatus;
 }
 
 let worker: Worker | null = null;
@@ -24,7 +25,13 @@ function getWorker(): Worker {
   return worker;
 }
 
-export async function initEngine(onProgress: (loaded: number, total: number) => void): Promise<void> {
+export type ModelStatusCallback = (status: ModelStatus) => void;
+export type ProgressCallback = (loaded: number, total: number) => void;
+
+export async function initEngine(
+  onStatus: ModelStatusCallback,
+  onProgress: ProgressCallback
+): Promise<void> {
   const w = getWorker();
 
   return new Promise<void>((resolve, reject) => {
@@ -32,6 +39,17 @@ export async function initEngine(onProgress: (loaded: number, total: number) => 
       const msg = event.data as WorkerMessage;
 
       switch (msg.type) {
+        case 'model-status':
+          // Worker posts flat fields: { state, phase, progress, loadedMB, totalMB }
+          onStatus({
+            state: (msg as any).state ?? 'idle',
+            progress: (msg as any).progress ?? 0,
+            loadedMB: (msg as any).loadedMB,
+            totalMB: (msg as any).totalMB,
+            phase: (msg as any).phase,
+          });
+          break;
+
         case 'progress':
           onProgress(msg.loaded ?? 0, msg.total ?? 1);
           break;
@@ -66,7 +84,6 @@ export async function generate(
     const handler = (event: MessageEvent) => {
       const msg = event.data as WorkerMessage;
 
-      // Only handle messages for our current generation
       if (msg.id !== id) return;
 
       switch (msg.type) {
@@ -96,5 +113,6 @@ export async function generate(
 export function abort(): void {
   if (worker && currentGenerateId) {
     worker.postMessage({ type: 'abort', id: currentGenerateId });
+    currentGenerateId = null;
   }
 }

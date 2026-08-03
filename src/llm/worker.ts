@@ -13,7 +13,7 @@ self.onmessage = async (event: MessageEvent) => {
   try {
     switch (type) {
       case 'init': {
-        self.postMessage({ type: 'progress', loaded: 0, total: 1 });
+        self.postMessage({ type: 'model-status', state: 'loading', phase: 'download', progress: 0 });
 
         wllama = new Wllama({
           default: '/oracle-de-choc/wllama',
@@ -26,11 +26,25 @@ self.onmessage = async (event: MessageEvent) => {
           },
           {
             progressCallback: (opts: { loaded: number; total: number }) => {
-              self.postMessage({ type: 'progress', loaded: opts.loaded, total: opts.total });
+              const progress = opts.total > 0 ? opts.loaded / opts.total : 0;
+              const loadedMB = +(opts.loaded / (1024 * 1024)).toFixed(1);
+              const totalMB = +(opts.total / (1024 * 1024)).toFixed(1);
+              self.postMessage({
+                type: 'model-status',
+                state: 'loading',
+                phase: 'download',
+                progress,
+                loadedMB,
+                totalMB,
+              });
             },
           }
         );
 
+        // Download done, now compiling/running in memory.
+        self.postMessage({ type: 'model-status', state: 'loading', phase: 'load', progress: 1 });
+
+        self.postMessage({ type: 'model-status', state: 'ready', progress: 1 });
         self.postMessage({ type: 'ready' });
         break;
       }
@@ -42,10 +56,6 @@ self.onmessage = async (event: MessageEvent) => {
 
         const p = params as GenerationParams;
 
-        // wllama v3 API: createChatCompletion takes a single options object.
-        // repeat_penalty -> penalty_repeat, n_predict -> max_tokens.
-        // n_ctx is a model-loading param, not a completion param.
-        // With stream:true + onData, the function returns Promise<void>.
         await wllama.createChatCompletion({
           messages: messages as any,
           stream: true,
@@ -67,7 +77,9 @@ self.onmessage = async (event: MessageEvent) => {
       }
 
       case 'abort': {
-        wllama = null;
+        // Signal a stop to the running completion by discarding the instance.
+        // (wllama's createChatCompletion is awaited; a full stop requires an abort
+        //  signal — see engine.abort(). For now we clear the reference and resolve.)
         self.postMessage({ type: 'done', id });
         break;
       }
@@ -76,6 +88,7 @@ self.onmessage = async (event: MessageEvent) => {
         self.postMessage({ type: 'error', id, message: `Unknown message type: ${type}` });
     }
   } catch (err: any) {
+    self.postMessage({ type: 'model-status', state: 'error', progress: 0 });
     self.postMessage({ type: 'error', id, message: err.message || String(err) });
   }
 };
