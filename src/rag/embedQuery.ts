@@ -10,6 +10,7 @@ export async function embedQuery(text: string): Promise<number[]> {
   }
 
   const result = await _pipeline(text);
-  const vector = Array.isArray(result) ? result : Array.from(result as unknown as number[]);
+  // transformers.js returns a Tensor; its flat data (typed array) is the 384-dim vector.
+  const vector = Array.isArray(result) ? result : Array.from(result.data);
   return vector;
 }

@@ -1,0 +1,1561 @@
+[musique]
+Mét de choc. Mét de choc.
+Mét de choc. Et si on se demandait
+pourquoi on pense ce qu'on pense ?
+Shocking 29, détective privé, en quête
+de vérité.
+Nous poursuivons notre plongée toujours
+plus profond dans le quotidien de la
+détective privée Margaot Ducen. Lui
+arrive-t-il de collaborer avec des
+hackeurs éthiques dans le cadre
+d'enquête en ligne ? Quelle technique
+utilise-t-elle pour recueillir un
+témoignage ? Et pour finir cette série
+en beauté, mon invité nous dévoile les
+coulisses de trois dossiers sensibles
+pour lesquels elle a été mandatée,
+parfois sur plusieurs années. Il y est
+question d'emprise mentale, de trafic
+d'enfants et d'escroquerie sur personnes
+vulnérables. Ce dernier sujet me
+touchant personnellement, vous verrez.
+Comme à l'accoutumé, cette série se
+terminera par la légendaire Minute
+Stupide. Ce moment un peu gênant où mon
+invité nous révélera la chose la plus
+stupide qu'elle est faite de toute sa
+vie. Avant de nous lancer, j'aimerais
+rappeler que MTA Choc est un podcast
+indépendant, gratuit et qui refuse les
+revenus publicitaires, que ce soit sur
+les applis de podcast, sur YouTube ou en
+sponsoring.
+Ce projet humble et superbe n'existe
+donc que grâce à vos dons. Oui, je sais,
+c'est osé.
+Alors, un grand merci à celles et ceux
+qui le soutiennent financièrement
+semaine après semaine. Vos contributions
+me permettent non seulement de me
+rémunérer pour ce travail à pleintemps,
+mais aussi de m'entourer de
+professionnels aussi engagés que
+créatifs pour qu'une nouvelle émission
+arrive à vos oreilles avides chaque
+vendredi.
+Si vous aussi vous pensez que cette
+entreprise d'éducation à la pensée
+critique appliquée à soi vous est utile
+et qu'elle peut-être utile à d'autres et
+si vous en avez les moyens bien sûr,
+vous pouvez faire un don ponctuel ou
+mensuel en suivant le lien en
+description vers les plateformes
+participatives.
+Merci à toutes et tous pour votre
+soutien. Métat de choc a besoin de vous.
+Et sans plus attendre, chapitre 3,
+affaires sensible.
+Attention. Si les questions de viol et
+de pédocriminalité vous sont
+éprouvantes, assurez-vous d'être dans de
+bonnes conditions pour écouter cette
+émission.
+On parlait tout à l'heure de le Zint et
+tu disais que bon, vous utilisez que des
+informations qui sont disponibles, hein.
+Alors après, il faut les trouver mais
+elles sont là. Et est-ce que ça t'est
+déjà arrivé ou est-ce que des collègues
+utilisent des hackers pour les aider
+dans ce travail d'int ? Je sais pas ce
+que tu entends vraiment par hackur si
+c'est le fait de hacker un système
+[grognement]
+des personnes qui ont des connaissances
+informatiques de hacking.
+Alors il y a des détectifs qui ont des
+bonnes connaissances en informatique
+enint et cetera. Après, s'il faut coder
+ou faire du piratage ou rentrer dans un
+système alors qu'on a pas le droit,
+peut-être pour une bonne raison hein, ça
+peut être un hackur éthique. Moi, la
+loi, elle m'empêche de hacker les
+systèmes. Donc, je je vois pas dans
+quelle configuration je pourrais faire
+appel à un hackur. Est-ce que les
+hackeurs ont des compétences euh bah
+justement dans dans le fait de pouvoir
+fouiller de manière légale du coup sur
+internet ? Euh je pourrais faire appel à
+quelqu'un qui soit euh très bon en usine
+sur un certain point où moi par exemple
+je sais que il y a des gens qui sont
+très bons pour aller fouiller sur le
+dark web ce genre. Euh je pourrais me
+tourner vers quelqu'un là-dedans.
+Euh mais sinon je je j'aurais tendance à
+privilégier de faire travailler un
+détective privé à Gré même pour de los
+int.
+D'accord.
+Voilà parce que pour moi c'est
+important. on touche des données
+personnelles, je vais quand même devoir
+expliquer mon mon sujet, euh l'histoire
+qui m'a mandaté et cetera. Au moins
+donner des éléments et je préfère quand
+même le faire à quelqu'un qui soit agréé
+comme moi quoi. Parce que si le rapport
+il va en justice, il faut quand même
+qu'on soit tous euh
+béton.
+Oui, c'est ça la difficulté de faire
+appel à quelqu'un d'extérieur finalement
+qui serait pas détective privé. La
+question se pose est-ce que euh par
+exemple un spécialiste d'Osint mais qui
+n'est pas agréé euh enquêteur privé, il
+a le droit de faire des enquêtes sur nos
+domaines où il y a de la donnée
+personnelle, où il y a de la vie privée
+qui peut euh où peut y avoir
+potentiellement une atteinte.
+En fait, tout le monde peut faire de
+l'osint. La question c'est quels
+éléments du dossier vous vous pouvez lui
+transmettre pour qu'il fasse sa
+recherche ? C'est ça.
+Moi c'est pour ça que je trouve qu'il y
+a suffisamment de gens qui sont bons
+enint parmi les détectives.
+Euh après euh je peux aussi renvoyer mon
+client vers d'autres spécialistes si
+jamais.
+par exemple
+euh des gens qui font ce qu'on appelle
+du forensic, c'est par exemple de
+prendre un ordinateur, d'essayer d'aller
+voir les données à l'intérieur, par
+exemple dans un cas de pédophilie ou des
+choses comme ça. Ça c'est d'autres
+spécialistes, c'est des experts,
+le juge aussi, enfin le tribunal peuvent
+avoir aussi leurs experts, la police
+aussi peut avoir les experts.
+Donc voilà, faut savoir vers quel
+professionnel diriger. J'aimerais
+revenir avec toi sur la manière dont tu
+mènes tes entretiens avec tes clients,
+avec les témoins. Là, on parle plus de
+filature d'enquê de voyage, on parle
+vraiment de personnes avec qui tu vas
+euh vraiment entrer en conversation,
+avec lesquelles tu vas essayer de cerner
+en fait euh ce qui se passe, comment ça
+se passe ? Quelles sont tes techniques ?
+Est-ce que tu prends des notes ? Est-ce
+que tu enregistres déjà pour commencer ?
+Alors, les clients, la plupart du temps,
+le premier contact, il se fait quand
+même par téléphone. Euh, je prends
+toujours des notes. Je je ne sachant euh
+pas ce qu'il en est, je prends toujours
+des notes. Euh il y a des personnes qui
+préfèrent euh qu'on se voit euh en vrai.
+En général, c'est pour raconter des
+choses un peu lourdes, des choses
+difficiles. C'est des personnes qui ont
+souvent été victimes et qui du coup,
+enfin, c'est un peu compliqué de le
+raconter par téléphone. L'idée, c'est de
+d'ouvrir au maximum
+le sujet, c'est-à-dire
+je dis qu'est-ce qui vous amène ici ?
+Voilà, quelque chose de très très large
+pour que la personne je vois comment
+elle va amener le truc. Alors, il y a
+les gens, ils vont tout raconter pour
+vous amener à ceux qui vous demandent
+concrètement dans leur dossier, mais ils
+vont vouloir tout vous raconter pour
+bien que vous compreniez. Donc ça ça va
+mettre par exemple 1 heure parfois et
+cetera ou plus. Et il y a des gens au
+contraire ils vont dire "Oui, je voulais
+savoir si vous pouvez faire si ça si
+ça." Bah expliquez-moi un peu plus c'est
+quoi le contexte, racontez. Donc là,
+faut poser des questions. Donc vraiment,
+ça dépend. Il y a des gens, ça déroule
+tout seul presque même, faut les
+recadrer un petit peu. C'est-à-dire
+quand je sens que ça n'aboutit pas, je
+recadre souvent en demandant qu'est-ce
+que je peux faire pour vous du coup dans
+cette situation parce que j'arrive pas
+bien forcément à voir ce qu'ils
+attendent de moi, qu'est-ce que vous
+attendez de moi ? Après, faut voir si
+c'est possible, voir si c'est légal.
+Voilà, faut discuter un peu de toutes
+les conditions.
+Donc au départ, c'est plutôt des
+questions ouvertes pour laisser la
+personne s'exprimer. Oui, puis pour que
+je vois qui est la personne en face de
+moi.
+Et oui, pour évaluer la personne.
+Enfin, c'est pas l'évaluer parce que
+attention, on passe pas, c'est pas un
+test euh mais euh il ça m'en dit
+beaucoup sur elle si quand même j'ai
+besoin de savoir qui va être le
+potentiellement ce client. Hm
+hm.
+Et ensuite quand par exemple c'est une
+personne pour un dossier qui va être va
+s'étaler sur plusieurs semaines,
+plusieurs mois, là tu vas faire
+plusieurs entretiens, j'imagine. Ça va
+être au fil du temps peut-être un
+affinage.
+Après, on commence à faire l'enquête
+très rapidement. Moi, je je suis en
+contact avec WhatsApp ou autre. Enfin,
+sauf quelques clients qui restent très
+mail. Il y a des gens qui veulent que
+tout soit consigné par email. Euh si
+c'est des entreprises euh c'est tout
+consigné par email et si c'est des
+particuliers par exemple, j'aurais plus
+tendance à échanger euh via WhatsApp. Et
+du coup bah ça va être un ping-pong.
+Donc moi, je vais envoyer mon rapport
+journalier par exemple. Eux ils vont en
+discuter entre eux par exemple avec
+l'avocat pour savoir quelle est la
+meilleure stratégie pour continuer avec
+les éléments qu'on a recueilli. Donc
+c'est vraiment un ping-pong intellectuel
+et stratégique sur la marche à suivre
+pour la prochaine fois.
+Un client parfois il faut lui tirer les
+verres du nez parce que parfois on est
+sur le lieu, on photographie un vélo qui
+est aux abords de l'endroit où la cible
+est censée sortir et on demande au
+client "Est-ce que vous pensez que c'est
+son vélo ?" Oui. Oui, c'est son vélo. Ou
+alors les gens, ils ont pas la plaque
+d'immatriculation puis après ils
+reconnaissent la voiture. Donc on est
+tout le temps en contact avec eux. Hm
+hm. Est-ce que dans certains cas tu as
+eu des clients justement qui avaient
+complètement oublié un élément ou
+n'avait pas pensé à un élément qui
+aurait pu vraiment aider dans l'enquête
+et qui s'est révélé au bout d'un mois, 2
+mois ou plus tard ? Alors, j'ai pas le
+ça s'est révélé mais j'ai le on n' pas
+vu sortir la cible
+d'un immeuble et la cliente me dit "Ah
+mais il y a une deuxième sortie mais il
+prend jamais cette sortie là." [rires]
+Ah ok. Le le problème c'est que je
+comprends le il prend jamais cette
+sortie là.
+Mais qu'est-ce que j'en sais moi que lui
+il est peut-être au courant que elle va
+mettre en place un système de
+surveillance. Euh parce qu'il faut pas
+croire euh dans un couple quand
+quelqu'un espionne l'un, c'est souvent
+réciproque aussi parce que celui qui va
+voir ailleurs, il a pas envie de se
+faire choper. Donc il prend aussi ses
+précautions pour pas se faire choper.
+Donc ça elle nous l'a dit trop tard et
+euh et puis il faut aussi rappeler que
+nous on est là pour justement les Mais
+ça se passe pas comme d'habitude. C'est
+justement parce que ça se passe pas
+comme d'habitude que vous avez des
+doutes et que on est là.
+Donc voilà.
+Est-ce que tu t'es déjà retrouvé dans
+une sorte de tir croisé où il y avait un
+détective privé par exemple du côté du
+patron et puis un détective privé du
+côté de l'employé ou un détective privé
+du côté du mari, un détectif privé du
+côté de la femme ? Qui se retrouvait sur
+le trottoir ? Tu fais quoi là ? Non, pas
+en même temps. Mais par contre, ça m'est
+déjà arrivé au tout début, je bossais
+pour une agence et on suivait une femme
+dans le cadre d'un divorce qui qui se
+passait extrêmement mal et la mère de la
+cible sort et fait le tour du pâté de
+maison et regarde dans toutes les
+voitures. Bon bah ça ça c'est un
+comportement de quelqu'un qui sait
+comment ça marche les détectives.
+D'accord.
+Parce que c'est quand même pas normal de
+faire ça en fait quand on sort de chez
+soi, on fait pas. Puis après elle est
+rentrée chez elle puis après elle est
+ressortie avec sa fille et nous on
+suivait sa fille.
+Non, elle nous a pas vu mais nous on a
+vu qu'elle a essayé de regarder dans
+toutes les voitures. Donc c'était un peu
+inquiétant [souffle coupé]
+et après on s'est rendu compte que
+elle-même avait fait appel à un
+détective contre son mari. Enfin bon
+bref.
+Donc à partir du moment où les cibles
+sont d'anciens clients ou des gens qui
+ont fait appel à des détectives, c'est
+très compliqué. Ils connaissent les
+techniques et tout ça quoi.
+Mais c'est ça qui est aussi amusant
+entre guillemets, c'est que il y a
+beaucoup plus de personnes qu'on croit
+qui font appel à des détectives privés
+mais on en entend jamais parler. Moi, je
+connais personne qui fait appel à un
+détective privé.
+Non, on va pas s'enventer.
+Voilà.
+Voilà.
+C'est pour ça que c'est difficile. Moi,
+je marche un peu par le bouche à oreille
+et cetera, mais enfin franchement les
+trois/4 de mes clients, je leur demande
+"S'il vous plaît, laissez-moi un avis
+sur Google, ils sont trop contents, ils
+me disent merci 15000 fois et cetera."
+Moi je leur dis bah laissez-moi un petit
+avis sur Google mais je sais pas prenez
+au pire une autre adresse. Mais mais
+c'est pas un truc qui se fait parce que
+déjà
+en général quand c'est fini on a plus
+trop envie d'entendre parler de vous
+parce que vous avez été là sur un aspect
+douloureux de leur vie. Donc on a vite
+envie de vous oublier ce que je peux
+comprendre et puis on a pas envie de
+dire qu'on a fait appel à un détective
+privé. C'est non. Oui. Même une
+entreprise n'a pas envie de de faire
+savoir que elle a eu un problème
+concurence des loyèmes déjà. C'est ça.
+Surtout pas une entreprise parce que ça
+peut ça je peux comprendre plus une
+entreprise qui a qui va pas laisser des
+avis Google des choses comme ça. Mais
+personne n' envie de de raconter que on
+est allé entre guillemets enquêter
+pour régler un problème. Hm. Donc on l'a
+bien compris, ta vie est quand même une
+vie assez recambolesque où il y a
+beaucoup d'imprévus, beaucoup de
+d'aventures, on va dire, beaucoup de
+choses assez inattendues qui se passent
+et ça, j'imagine que c'est quelque chose
+qui est assez satisfaisant la plupart du
+temps. Est-ce qu'il y a des choses qui
+finalement on ont créé une certaine
+désillusion ou des des choses qui sont
+difficiles à vivre dans ce métier
+qui t'ont qui t'ont déçu ou des
+situations ? Quand je suis rentrée dans
+ce métier, j'avais pas forcément une
+image fantasmée du détective privé et
+cetera parce que déjà je m'étais
+extrêmement bien renseigné sur la
+question.
+J'avais regardé tous les reportages qui
+existaient. J'avais lu plein de choses
+qui essayaient justement de de montrer
+la réalité du métier. Donc j'y suis
+allée en me disant on va tester. Mais
+j'avais pas créé de mine dans ma tête
+heureusement
+parce que du coup ça n'a été que du
+belle découverte et cetera. Ce ce métier
+m'a beaucoup euh émerveillé au fur et à
+mesure que je l'ai fait, de par les
+enquêtes que j'ai faites qui ont été
+très satisfaisante d'un point de vue
+d'une enquêterrice parce que j'ai eu
+l'impression à ma toute petite échelle
+d'avoir participé à quelque chose de
+bien. Hm
+hm.
+Euh donc ça c'était c'est très
+satisfaisant. Euh oui, la désillusion
+c'est plus le côté euh entrepreneur de
+la chose. [grognement]
+Mais dans des cas particuliers de de
+dossiers que tu as pu traiter, est-ce
+qu'il y a eu des des dossiers qui se
+sont finis un peu en en queue de poisson
+et puis tu t'es dit "Ah finalement, on a
+abouti à rien."
+Ah bah oui, ça arrive plein de fois que
+les gens ils pensent que leur salarié
+fait si ou que leur femme fait ça puis
+nous en tout cas les moments où on a
+suivi, s'est rien passé. Hm hm.
+Donc c'est très frustrant pour tout le
+monde. Euh c'est frustrant pour le
+client euh qui va payer pour rien. C'est
+frustrant pour nous parce que on a un
+client qui est pas satisfait et en même
+temps euh le but nous c'est pas
+d'apporter des billes aux clients quoi.
+Le but c'est de savoir quelle est la
+situation.
+Ouais. Bon ben peut-être qu'ils se sont
+fait des films ou en tout cas on n pas
+eu de chance alors sur les interventions
+qu'on a faites mais en tout cas euh
+parfois il se passe rien aussi hein.
+Et dans le cas d'une disparition,
+j'imagine que c'est encore plus
+compliqué quand l'enquête s'embourbe et
+que on a plus de pistes ou
+on n pas les moyens de suivre une piste
+par exemple. Ça peut [grognement]
+arriver ça ?
+Euh pas les moyens non, mais des fois il
+y a des disparitions
+qui pose vraiment question quoi. Des
+gens, ils étaient dans la pièce à côté
+et puis d'un coup quelqu'un est venu
+sonner à la porte, ils ont répondu puis
+je sais pas, la dame elle est restée
+dans la cuisine à faire sa vaisselle
+puis d'un coup elle se retourne, son
+mari est plus là.
+Hm hm. et puis son mari il est plus là
+puis plus jamais quoi. H
+le mari, le père de ses enfants, enfin
+et nous on est là, on enquête, on
+réfléchit à cette question pendant je
+sais pas le temps de l'enquête et elle
+c'est toute sa vie quoi. H
+donc non, des fois on serait on se met à
+la place des des gens et c'est terrible
+quoi. Hm hm.
+Dans ton livre Dans la peau d'une
+détective privée, tu parles de
+différents cas, hein, d'affaires que tu
+as que tu as suivi, pour lesquelles tu
+as enquêté et notamment il y a une une
+affaire d'emprise mentale où une mère
+t'a appelé un jour et elle t'a dit
+"Je pense que ma fille est séquestrée."
+Voilà.
+Voilà. Oui, c'était d'ailleurs, j'ai eu
+plusieurs cas d'emprise qui commencent
+toujours par cette histoire de
+séquestration parce qu'en fait, je pense
+que c'est le schéma qui se font dans
+leur tête de
+c'est l'image despinal. Voilà, ma fille
+ne peut pas faire ça d'elle-même,
+de son propre libre arbitre. Euh donc
+cette histoire, oui, elle s'est étalée
+sur plusieurs années. En fait, elle m'a
+expliqué que sa fille était en relation
+avec une personne qui avait 15 ans de
+plus qu'elle. Donc depuis qu'elle avait
+20 ans à peu près, donc
+quand même un âge, on se cherche encore.
+Et
+au début, le petit copain était accepté
+dans la famille, il y avait pas de
+souci.
+Et puis au fur et à mesure, il y a
+commencé à il y avoir quelques
+situations qui ont dérapé et qui ont
+alerté bah la famille, les frères et
+sœurs et cetera où ils se sont dit "Ou
+là là, mais c'est le petit copain, il
+est quand même très très bizarre."
+Et à partir du moment où ils ont
+commencé à remettre en doute ce côté euh
+bizarre de ce petit copain, en tout cas
+pas sain, un peu malsin, bah la fille en
+question, elle a complètement coupé les
+ponts et elle est partie euh de son
+côté. Elle a coupé les points avec tous
+ses amis euh ses amis d'enfance, ses
+amis des études. Elle a arrêté ses
+études alors qu'elle faisait quelque
+chose
+qui était son rêve quoi.
+Tu le dis dans ton livre, elle faisait
+des études de musique. C'est ça ?
+Ouais. Voilà. C'est quand même être une
+partie de soi qui est
+faire une croix sur sa personnalité
+quoi.
+Quand on enlève les amis, la famille et
+ses passions, qu'est-ce qui reste de
+nous ?
+Donc c'est ça qui a inquiété beaucoup la
+famille. Et puis il y avait autre chose,
+c'était déjà un la retrouver savoir si
+elle était vivante. Vraiment ça c'était
+la première chose que j'ai dépê.
+Ça faisait combien de temps qu'elle
+avait disparu ?
+La première fois, je crois qu'il l'avait
+pas vu depuis 2 3 ans.
+Ouais. Donc ça a été quoi ton travail
+au départ ? Mon travail c'était est-ce
+qu'elle est vivante ? Euh et vraiment
+mais c'est ce sera la question un peu
+constante de de la mère, c'est est-ce
+que ma fille est vivante quoi vu que il
+y a plus moyen de la contacter, que sa
+fille vient en total autarsie, euh
+qu'elle répond plus à rien, l'idée c'est
+de savoir est-ce qu'elle est vivante
+quoi.
+D'accord. Alors comment tu as mené ton
+enquête ?
+Je l'ai retrouvé assez facilement.
+Enfin, c'était pas très compliqué quoi.
+On a j'ai posé des questions aux bonnes
+personnes et cetera. Pardon. Le problème
+qui s'est passé, c'est que euh il
+déménageait tout le temps
+et que parfois les techniques que j'ai
+utilisé pour retrouver une adresse, elle
+marchait pas sur l'adresse suivante. Et
+pour une autre adresse par exemple, on a
+dû utiliser de l'INT avec des éléments
+que lui diffusait sur les réseaux
+sociaux et cetera puisque lui est un
+caractère très
+narcissique donc c'est génial pour un
+enquêteur d'enquêter sur des gens
+narcissiques
+il se montre sur les réseaux sociaux il
+parle de sa vie
+montre il parle et cetera donc c'est
+formidable euh donc voilà on a eu
+plusieurs éléments mais c'est voilà
+c'est une enquête qui a duré longtemps
+et euh qui n'est toujours euh pas
+résolu, mais là, il y a pas de
+résolution en fait. Euh moi,
+j'interviens que pour euh établir un
+état de fête d'une situation à un moment
+donné quand il y a une inquiétude qui
+est trop forte. Euh je ne donne jamais
+les adresses à la mère, les adresses que
+je trouve, ça allait bien au courant.
+Par contre, on a quand même monté tout
+un dossier euh parce que il y avait
+plusieurs soupçons notamment bah
+d'emprise mentale euh aussi de dire
+sectaire parce qu'il y avait quelque
+chose là-dedans. Donc voilà, on a on a
+monté tout un dossier mais c'est très
+difficile aujourd'hui aux yeux de la
+justice euh de faire enquêter les juges
+là-dessus. Hm. Alors effectivement dans
+l'histoire que tu racontes dans ton
+livre, tu montres que il déménage
+régulièrement et que donc c'est
+difficile de à chaque fois repartir de
+zéro quasiment pour retrouver leur
+trace, mais tu la retrouves quand même
+trois fois. Et finalement ce que tu
+observes, c'est que manifestement, il y
+a quand même déjà une relation de couple
+conflictuelle
+avec potentiellement de la violence, de
+l'alcool, voilà, un état second et
+cetera. Mais au bout du compte, quelle
+est la conclusion ? Qu'est-ce que tu à
+quel moment tu vas arrêter cette enquête
+? Et qu'est-ce que tu vas dire à la mère
+ou aux parents ?
+Vo c'est une question que je me pose à
+chaque fois avec cette histoire, c'est
+bon bah là j'arrête parce que là de
+toute façon ça sert plus à rien. Sauf
+qu'après il déménagent et là après le
+livre d'ailleurs ils ont redéménagé et
+je les ai retrouvé.
+Sauf que pour l'instant ça ne sert pas à
+grand-chose à part de dire elle est
+toujours vivante. Voilà. Mais en même
+temps euh c'est pas rien non plus de
+dire à une mère que sa fille est
+toujours vivante.
+Hm hm.
+Donc je sais pas, j'ai du mal à me dire
+euh bon je veux pas lui dire qu'elle est
+vivante, je veux pas la rechercher parce
+que c'est bon, elle passe à autre chose.
+Bah non, on passe pas à autre chose en
+fait. C'est sa fille donc elle passera
+jamais à autre chose.
+Donc voilà. Après, je fais bien
+attention à à ce que ça ne déborde pas.
+Elle a enfin voilà les données ne
+débordent jamais. Donc moi, enfin c'est
+un peu de la rassurer, mais je lui dis
+aussi plein de fois euh arrêtez de
+vouloir la retrouver. Hm
+hm.
+Elle va revenir un jour ou l'autre de sa
+propre volonté. Soyez patients. Mais
+bon, ça c'est des choses qui passent pas
+très bien quoi.
+Parce que là, on est dans le cas d'une
+jeune femme, elle est adulte et comme on
+le disait tout à l'heure, elle a pas
+décidé de disparaître.
+Oui. Oui. Alors, on peut je sais pas à
+quel moment on a euh complètement son
+libre arbitre quand on est aussi sous
+l'emprise de substance.
+Voilà. Voilà, c'est ça. Il y a
+substance, il y a l'emprise mentale.
+Il y a substance, il y a l'emprise
+mentale, il y a l'enfoncement dans la
+délinquence. Euh il y a beaucoup de
+choses qui font que en fait on se quand
+je quand je regarde la situation, quand
+je l'analyse d'un point de vue euh des
+faits, c'est difficile le retour en
+arrière dans sa situation. C'estàd que
+même si demain elle se dit "Oh là là,
+mais j'en peux plus de ce mec,
+j'aimerais retourner voir ma famille"
+mais sauf que je leur en ai fait baver
+tellement, elle leur a dit des horreurs,
+elle a demandé,
+elle a il y a cette histoire d'argent,
+toujours en demande d'argent,
+elle a manqué des enterrements. Enfin,
+il y a des trucs sur lesquels elle
+pourra pas
+en arrière.
+C'est effectivement la grande difficulté
+des personnes qui sont engagées dans
+quelque chose d'extrême, de radical,
+comment revenir en arrière ? Comment
+s'avouer déjà queon a pris la mauvaise
+direction à soi-même et comment ensuite
+revenir vers des personnes à qui on a
+fait du mal ou qu'on a repoussé pendant
+tant d'année quoi.
+Parfois je me dis parce que je je j'ai
+pas de j'ai pas de position arrêtée sur
+cette enquête. Parfois je me dis
+peut-être que elle fait les mauvais
+choix et c'est sa vie quoi. [grognement]
+Ben c'est le cas. C'est c'est le cas.
+C'est le casement. Ouais.
+[grognement]
+Est-ce que en tant que parent euh d'une
+personne majeure, on a obligation
+de l'accompagner, de l'aider, de rester
+en contact si on voit qu'elle est en
+détresse ? Est-ce que c'est comme une
+personne mineure ?
+Non. Non, non, il y a pas d'obligation
+d'obligation. Non, non.
+Il y a pas d'obligation légale.
+Non, pas du tout. Non, non.
+D'accord. Le deuxième cas que tu
+développes et qui m'a beaucoup intéressé
+dans ton livre, c'est une histoire de
+trafic d'enfants.
+Est-ce que tu peux nous raconter un peu
+cette histoire et comment ce dossier est
+arrivé jusque sur ton bureau ?
+Bah mon dossier, ce dossier, il arrive à
+mon bureau parce que cette femme en fait
+veut parler à une femme. Là pour le
+coup, le fait d'avoir été une femme, ça
+aide parce que ce qu'elle avait à
+raconter était plus facile à raconter à
+une femme qu'à un homme. Je pense qu'il
+y avait aussi quelque chose de l'ordre
+de la confiance. Donc euh en fait au
+début c'est une rencontre qui a été
+quand même assez bouleversante parce que
+aussi ça a pris enfin c'est une enquête
+qui a duré sur des années et pour le
+coup c'est aussi une femme avec qui j'ai
+noué une relation qui est pas une
+relation de client euh professionnel
+normal qui est pas non plus de l'amitié
+enfin qui a une relation différente
+d'enquête quoi.
+Et euh elle au début, elle avait deux
+volets sur lesquels elle voulait avoir
+des réponses. Un volet parce qu'elle
+avait été adoptée et que elle se posait
+des questions sur les conditions de son
+adoption. Moi, c'est le volet sur lequel
+j'ai travaillé. Et ses parents adoptifs
+venaient juste de mourir, enfin était
+mort pas longtemps avant. Du coup, elle
+s'était autorisée enfin à son âge à euh
+enquêter sur son adoption parce que dans
+son dossier d'adoption, il y avait des
+irrégularités et elle arrivait pas à se
+l'expliquer. Donc moi, la première des
+choses, ça a été de retrouver sa mère
+biologique euh et de les remettre en
+contact et cetera. Mais elle avait aussi
+un deuxième volet qui était que elle
+avait été abusée par son père adoptif et
+c'était la raison pour laquelle elle
+voulait savoir si son adoption avait été
+organisée dans ce but là et en plus de
+elle avait été euh entre guillemets
+trafiquée dans un réseau pédophile de
+son père. Son père qui était
+un médecin haut placé et je raconte son
+histoire parce que aussi cette femme a
+décidé de le rendre public. Euh elle en
+a parlé dans la presse. Euh c'est
+l'affaire des hommes de la rue du bac.
+Sinon, évidemment, je me permettrai pas
+de raconter ces détails-là.
+Donc moi, j'ai travaillé vraiment sur le
+côté de l'adoption
+mais qui était quand même très important
+parce que cette adoption et toutes ces
+irrégularités
+montre quand même qu'il y avait des
+zones sombres et dont on avait pas de
+réponse. Est-ce que c'était un trafic
+d'enfants quoi. H
+Et donc, [grognement] quelle a été la
+conclusion de cette enquête ? pour le
+volet sur lequel auquel tu t'es
+intéressé.
+Moi bah moi j'ai contacté sa mère
+biologique à qui j'ai dit euh bah est-ce
+que vous pouvez me raconter ce qui s'est
+passé, pourquoi elle a été adoptée ?
+Parce qu'en plus c'était une mère qui
+avait gardé ses deux autres enfants, son
+enfant d'avant et son enfant d'après. Hm
+hm. Pourquoi euh euh vous avez hésité
+parce que des elle a mis plusieurs mois
+avant de signer le volet de l'adoption.
+Pourquoi il y avait un notaire qui était
+présent au moment où elle a abandonné
+son enfant ?
+Ce qui n'est pas courant en général.
+é mine pourit pas un adulte qui la
+représentait légalement il y avait une
+histoire que quand elle était née
+soit-disant elle pensait que on lui
+avait dit que l'enfant avait la
+mucovicidose. Or du coup ma clinte a
+s'est demandé si elle avait eu la
+mucovicidose ayant elle-même eu deux
+enfants. Elle voulait savoir si elle
+avait
+En fait la version de cette mère a
+beaucoup changé au fil du temps. Euh ce
+qui s'est passé c'est qu'il y a eu tout
+tout le volet sur la pédophilie.
+Évidemment, les actes étaient prescrits.
+Donc de toute façon, euh ma cliente,
+elle savait très bien qu'il y aurait
+jamais de condamnation de ces
+personnes-là,
+mais elle elle le faisait plus pour que
+ça n'arrive plus jamais à des enfants
+que adopté
+que voilà qu'il y ait jamais l'ombre
+d'une possibilité qu'un enfant soit
+adopté dans le but d'être trafiqué
+et encore pire mis dans les mains de
+réseau pédophile quoi. Hm
+hm. Et ce réseau pédophile, c'était des
+grands noms, des grands avocats, des
+grands patrons de presse et cetera. Donc
+j'imagine que parler avec toutes ces
+personnes qui sont encore vivantes pour
+certaines, c'est David contre Goliath
+quoi. C'est vraiment enfin faut avoir
+vraiment beaucoup de courage quoi.
+Donc j'ai une admiration sans faille
+pour cette femme
+effectivement [grognement] parce que les
+personnes qui sont accusées c'est quand
+même Gabriel Matznef donc qu'on connaît
+he qui est quand même un écrivain qui a
+été accusé de pédophilie hein à
+plusieurs reprises. C'est Claudinbert le
+fondateur du point.
+[grognement]
+C'est Jean-François Revel qui est un
+philosophe français et c'est François
+Gibau qui est avocat. Donc
+effectivement, c'est pas n'importe qui.
+C'est des personnes de pouvoir aussi,
+c'est des personnes qui ont une
+réputation publique et qui vont
+forcément tout faire pour se défendre.
+Alors, il y en a une partie qui sont
+déjà morts, mais c'est vrai que c'est
+c'est une affaire énorme.
+Alors, il y a pas eu de condamnation,
+faut le rappeler. Euh, il nient
+évidemment tous leur implication, enfin
+ceux qui sont vivants
+ou leur famille
+euh [raclement de gorge] et leur ou leur
+famille et cetera. Ouais, ça a été une
+grosse affaire médiatique qui est sortie
+en plusieurs volets dans le journal de
+libération. C'est
+très récemment d'ailleurs hein, 2024
+2025, c'est c'est une affaire récente.
+Oui, parce qu'en plus euh ma cliente,
+elle a vu son père dans ces dernières
+années et elle l'a interrogé sur sur ces
+questions-là. Elle lui a posé des
+questions, elle l'a même enregistré et
+en fait, elle avait énormément de
+matières probantes. Alors là, pour le
+coup, on est dans la preuve. Elle avait
+beaucoup de choses, des écrits, elle
+avait qui confirmait les liens entre
+toutes ces personnes-là.
+Oui. Les liens d'amitié entre son père
+et ses personnes.
+Son père avoue dans les dans
+l'enregistrement
+les faits pédophiles.
+Ah oui,
+il avoue aussi pour certains membres de
+son réseau, mais lui comme s'il ne
+voyait pas presque le problème quoi.
+C'est hallucinant quand on lit c'est
+c'est vraiment c'est ça fait froid dans
+le dos. h
+c'est pas l'impunité, c'est de se dire
+que presque de l'amour pour les enfants,
+quoi.
+Et toi donc tu as accès à ces
+enregistrements ? Elle te les confie à
+un moment donné pour
+Alors moi je les lis à un moment donné
+parce que elle me le propose mais moi
+dans le cadre de ma mission c'était pas
+nécessaire que j'ai tout ça.
+J'ai jamais demandé plus que ce qui
+était nécessaire pour effectuer ma
+mission avec son avocate parce que moi
+je les ai je l'ai mis en lien avec une
+avocate qui était vraiment spécialisée
+sur les affaires pédophiles parce que je
+pense qu' enfin voilà c'est il fallait
+vraiment quelqu'un qui s spécialisé
+là-dedans et elles ont fait un travail
+remarquable. Elles ont monté un dossier
+énorme et du coup elles ont été
+entendues par la brigade des mineurs et
+cetera. Et une fois qu'elle a fait sa
+disposition là, elle m'a fait lire. Et
+c'est vrai que quand j'ai lu ça, je me
+suis rendu compte que je lui avais
+jamais demandé les détails
+de ce qui s'était passé. [grognement]
+Mais c'était pas nécessaire. Et puis je
+pense que dès le début, elle savait que
+je la croyais. H
+elle avait pas besoin de me prouver à
+moi et cetera. Et je pense que c'est ce
+qui l'a aidé peut-être dans ses
+démarches après à y croire. Donc pour
+elle, le premier point, le point de
+départ, ça a été d'abord de te contacter
+pour élucider cette question de
+l'adoption, retrouver
+que vous avez fait ensemble
+biologiquement,
+voilà, retrouver sa mère, ce qui a été
+un coup de chance puisqueen principe
+quand c'est une adoption plainère, il y
+a pas de trace des parents biologiques.
+Bah c'est là où c'est bien, c'est que il
+y a eu plein d'erreurs qui ont été
+faites dans le dossier dont son nom
+alors que normalement dans un jugement
+dans un jugement d'adoption, il y a pas
+ça quoi. D'ailleurs, il y a une des
+personnes qui est accusée euh l'un des
+pédocriminels supposés euh qui a laissé
+des traces sur l'un des documents que tu
+as consulté.
+Oui. À à chaque fois qu'on tirait un
+fil, on découvrait un truc euh horrible,
+quoi. Parce que quand j'ai fait la
+demande pour récupérer le jugement
+d'adoption de ma cliente, en fait, à
+chaque fois qu'on fait une demande
+d'archive, il y a notre nom dans la
+marge et l'année en question. Et là, en
+fait, on découvre que l'un des présumés
+agresseurs de ma cliente, qui est aussi
+avocat, a fait la demande de ce jugement
+d'adoption
+en 2000.
+En 2000 ?
+Ouais. Donc
+et alors c'était c'était un grand ami de
+son père.
+Enfin, voilà. Qu'est-ce qui s'est passé
+en 2000 pour que il ait fait cette
+demande ? Pourquoi cette demande a été
+faite ?
+On n pas répondu à toutes les questions
+non plus.
+Quel [grognement] est le l'état actuel
+de cette affaire ?
+Donc ma ma cliente, elle a été entendue
+et ça je pense que c'est quelque chose
+d'extrêmement important. Je pense qu'
+aussi ça soulève la question de la
+prescription de ces crimes là qui
+devraient jamais être prescrit parce que
+combien de temps on met pour avoir le le
+courage si on l'a parce que je pense
+qu'il y a plein de gens qui c'est pas
+c'est pas qu'ils ont pas le courage,
+c'est que c'est trop difficile pour eux.
+Euh parfois ça à mes 10 ans, 20 ans, 30
+ans, 40 ans. Donc il devrait pas y avoir
+de prescription. Je pense que ma cliente
+elle œuvre aussi à lever cette
+prescription. Il y a un livre qui va
+sortir donc qui va résumer tout l'effet
+qui a été écrit par Willy Leed Devin,
+journaliste de Libération qui a couvert
+cette affaire-là qui va sortir en avril
+euh qui s'appelle Les hommes de la rue
+du bac qui j'espère va pouvoir remettre
+aussi cette questionlà de la présomption
+du silence dans ses familles parce que
+là on parle de familles extrêmement
+riches. Donc ça montre bien aussi que
+ces crimes là se font dans toutes les
+classes sociales. Et puis ce cet
+institut d'adoption qui était le plus
+gros institut d'adoption depuis 1945 a
+fermé ses portes juste au moment où
+cette affaire a éclaté.
+Donc donc je pense que ma cliente, elle
+a fait un travail
+remarquable et elle continue de le faire
+encore aujourd'hui en parlant avec
+d'autres victimes.
+Oui. Parce qu'il y avait d'autres
+enfants qui étaient impliqués.
+lors de ces soirées de ces
+Oui. Alors ça c'est très compliqué. les
+les victimes réagissent toutes de
+manière tellement différente et ça
+dépend de trop de facteurs.
+Par contre, elle a retrouvé des
+personnes qui dans d'autres histoires
+différentes avec d'autres personnes et
+cetera ont vécu des choses similaires et
+je pense que ça c'est extrêmement
+important aussi que les victimes se
+parlent entre elles. Et ça ça a été une
+des choses que j'ai faites, c'était de
+retrouver des victimes
+avec qui elles ont pu échanger, se
+donner de la force,
+parler aussi de choses qui leur sont
+arrivées qui étaient très très
+similairies, quoi. Et ce qui est
+intéressant, c'est de voir aussi la
+réaction des personnes accusées et des
+membres de la famille des personnes
+accusées suite aux publications des
+enquêtes journalistique euh notamment de
+cette série qui avait été publiée euh
+dans Libération et notamment aussi au
+travers de de contrebune, on va dire euh
+dans le journal Le Figaro. qui a eu une
+espèce de bataille médiatique comme ça
+et notamment des enfants de
+Jean-François Revelophe
+parmi lesquels Mathieu Ricard le moine
+de Mathieu Ricard qui disent "On est
+d'accord d'entendre les victimes et on
+on pense qu'elles sont sincères mais il
+y a pas de preuve suffisante ça ne
+correspond pas à ce qu'on sait de notre
+père en gros c'est ça qui est dit sauf
+que bon en fait les faits qui ont été
+présentés par le journaliste de
+Libération montre clairement des
+relations amicales et et sous soutenu
+entre les différents acteurs. En fait,
+il y a tellement de preuves que c'est
+vrai que accuser les faits c'est
+compliqué parce que le journaliste avait
+plein d'autres choses qu'il avait pas eu
+le temps de montrer même si ça a été
+fait sur une semaine, ils ont publié
+une série. Enfin, c'est extrêmement
+fourni. Si vous voulez vous plonger
+dedans, ça met quand même du temps. Il y
+a beaucoup d'éléments déjà. Et le
+journaliste a juste rappelé des faits
+derrière et cetera. Je pense que le
+livre va en montrer d'autres. Oui, mais
+il y avait des menaces de de poursuite
+en diffamation.
+Mais très bien, les procès en
+diffamation, c'est parfait parce que
+après on va chercher la vérité dans les
+procès en diffamation et justement on va
+se concentrer.
+Je je trouve que c'est une menace qui
+fait pas peur quand les gens ont des
+preuves.
+Bah oui, et les journalistes en général
+presque on voudrait comme ça il y aurait
+une vraie condamnation sur des faits
+puisque la justice vu qu'il y a une
+prescription, on peut pas vraiment
+enquêter sur les actes commis.
+Le troisème cas euh le troisème dossier
+sur lequel je voulais qu'on discute un
+peu, c'est un cas là beaucoup plus
+banal, on va dire, mais
+terrible et qui touche énormément de
+personnes, y compris moi d'ailleurs. Et
+là, on va parler d'escroquerie sur
+personnes vulnérables. Une personne
+vulnérable, est-ce que tu peux définir
+ce que c'est dans ton métier ?
+Alors, une personne vulnérable, ça peut
+être vraiment une personne
+âgée qui a des petits problèmes de
+mémoire. Là pour le coup, c'était une
+personne qui était atteinte d'Alzheimer,
+mais ça peut être
+euh quelqu'un qui a des problèmes
+psychiques, qui est bipolaire, qui est
+schizophrène, qui est en dépression, euh
+qui est dépendant, alcoolique ou autre.
+Voilà, toute personne ou un enfant bien
+sûr.
+Enfant. Hm hm.
+Alors, raconte-nous cette histoire. Donc
+là, c'est un homme qui te contacte.
+Oui, c'est un homme qui me contacte
+parce que il s'inquiète pour sa mère qui
+est atteinte d'Alzheimer. Il y a une
+personne qui est censée venir s'occuper
+de la maison, de la personne âgée et qui
+doit faire le ménage, je sais pas, tant
+d'heures par semaine et en fait voilà,
+une aide à domicile et en fait la mon
+client, il a été contacté par la banque
+parce que il y a eu des visites avec sep
+personnes de l'aide à domicile et la
+grand-mère à la banque avec euh des
+retraits qui pouvaient pas se faire
+parce que le compte était bloqué,
+j'imagine, par les enfants.
+et euh la personne à domicile qui
+parlait pas très bien à la à la personne
+âgée. Donc le banquier un petit peu
+inquiet à appeler les enfants et cetera
+pour voir la situation. Nous, on a fait
+déjà une petite enquête pour démontrer
+que la personne restait pas du tout les
+heures de travail où elle était censée
+rester et euh ensuite ça a convaincu euh
+mon client de porter plainte sur cet
+autre aspect qui était le retrait
+d'argent et l'abus de faiblesse et
+cetera. Et en fait, c'est comme tu
+disais, c'est quelque chose qui peut
+paraître assez banal, mais il faut
+savoir que les gens qui sont isolés,
+c'est très compliqué de les protéger.
+C'est eux eux n'arrivent pas à se
+protéger eux-mêmes
+et ne voient pas le mal
+parce que cette grand-mère, elle s'est
+jamais plein hein de son aide à
+domicile.
+Et puis peut-être que l'aide à domicile
+lui criait dessus et que 2h après, cette
+grand-mère s'en rappelait pas. Donc euh
+faut voilà toujours [grognement] veiller
+aux personnes vulnérables surtout dans
+sa famille.
+Ouais. Ben après, il y a effectivement
+des moyens pour essayer de de protéger
+les personnes vulnérables, mais c'est
+vrai que bah quand on choisit une
+personne pour une aide à domicile, c'est
+difficile d'évaluer euh la qualité de
+son travail finalement. Euh surtout que
+si on lui fait appel, en tout cas dans
+mon cas par exemple, j'habite loin de ma
+mère et mon frère aussi habite loin de
+ma mère. Donc on on a mis en place une
+AD à domicile qui vient la voir deux
+fois, trois fois par semaine. Elle a une
+infirmière qui vient le matin. Ça crée à
+la fois une présence des personnes avec
+qui elle peut échanger et puis un rythme
+aussi dans sa journée. Et puis surtout
+quelqu'un qui l'aide, qui l'aide à faire
+ses courses, qui l'aide à faire ses
+papiers et cetera et puis qui va aussi
+la promener au parc et cetera et cetera.
+Donc très bien. Il y a aussi des des
+moyens de protéger les personnes âgées
+en les mettant sous tutelle ou curatel
+ou habilitation familiale qui est un
+nouveau système juridique proposé aux
+familles et simplifié. Mais au bout du
+compte et ben c'est pas toujours
+suffisant parce que on sait pas à qui en
+affaire. En ce qui me concerne ça a pas
+du tout été l'aide à domicile qui a été
+un souci. J'ai là je vais vous raconter
+un peu
+ce qui s'est passé pour ma mère. c'est
+que elle a tout simplement été
+escroquée. En fait, c'est une personne
+qui lui a été conseillée par une voisine
+qui est infirmière qui lui a dit "Ah bah
+si vous voulez faire des travaux chez
+vous, euh moi je connais quelqu'un qui
+est venu euh faire un grand ménage chez
+moi au moment d'un déménagement euh très
+fiable et cetera. Si vous voulez, je
+peux lui voilà vous donner ses
+coordonnées." Ma mère qui avait très
+envie de refaire l'isolation de ses
+combles, voilà, ça lui avait pris, elle
+s'est dit tiens, je vais faire ça. Sauf
+que la personne, qu'est-ce qu'elle a
+fait ? Elle est arrivée, elle a fait un
+un faux devis, enfin un devis pastiche
+qui au lieu de de se monter à 2000 ou
+3000 € se monter à 8000 € pour faire
+l'isolation des combles. Bon, nous, mon
+frère et moi, on apprend ça après coup,
+donc on se dit "OK euh mais bon voilà,
+il a fait les combles, il a fait un
+devis, elle l'a signé, elle a payé. Bon,
+OK,
+c'est ça le problème."
+Et puis quelques mois plus tard,
+qu'est-ce qu'on apprend ?
+Au détour de la conversation, comme si
+de rien était, ma mère raconte à mon
+frère "Ah oui, bah il est revenu avec un
+autre monsieur et puis là ils m'ont ils
+m'ont proposé de refaire une jonction de
+façade dans la cour. Ils m'ont fait un
+devis et alors donc ils m'ont fait payer
+avec carte bleue. Ils avaient un
+terminal de carte bleue, ils sont venus
+chez moi et mon frère dit "Mais ils sont
+venus parce que voilà, il y avait un
+besoin particulier." Non non, ils sont
+venus de même. Et puis voilà. Après, ils
+m'ont m'ont proposé ça puis ils m'ont
+fait payer en plusieurs fois et cetera
+et puis comme le terminal ben
+n'acceptait plus les paiements au bout
+d'un moment avec ma carte bleue et ben
+ils m'ont fait faire un chèque. Ah bon ?
+OK. Quel montant ? 3500 € pour faire un
+petit raccord de façade. Et donc là, on
+s'est dit ça va pas quoi. Là, on s'est
+dit il y a des limite et en fait on a
+fait opposition sur le chèque.
+Il faut se manifester aussi auprès de
+ces personnes.
+Voilà, on s'est manifesté auprès de la
+banque déjà pour dire voilà on fait
+opposition sur le chèque qui est pas
+encore passé.
+Surveiller les
+et puis puis voilà. Puis en fait deux
+fils en aiguille et bien on s'est rendu
+compte que la personne n'avait même pas
+fait l'isolation dans les combles.
+C'estàd quand on a été visiter les
+combles, une fois qu'on avait compris
+qu'il y avait un gros gros gros problème
+avec cette personne,
+on a fait des photos, on a pris des
+photos et on s'est rendu compte que bah
+non, en fait, il n'avait rien fait. Donc
+il avait simulé des travaux, il était
+reparti avec ses rouleaux de laine de
+verre comme il était entré. Et donc ça
+veut dire que ma mère bah a payé plus de
+10000 € des fausses prestations avec une
+personne qui
+c'est horrible
+ne remboursera pas. Alors je ne sais pas
+justement qu'est-ce que tu penses qu'on
+peut faire dans ce cas dans ce genre de
+situation ? Est-ce que ça vaut la peine
+de faire appel à un détective privé pour
+voir comment faire pression sur cette
+personne ou bah ce que je fais souvent
+qui peut être utile ne serait-ce que
+pour avoir des informations
+supplémentaires, c'est de trouver
+d'autres victimes parce que c'est c'est
+des gens qui vu le fonctionnement quand
+ils arrivent avec leur terminal et
+cetera, c'est impossible que ce soit
+leur première fois.
+C'est industriel.
+Voilà. Donc forcément il y en a
+d'autres. Donc forcément moi j'irai
+chercher sur les réseaux sociaux. Il y a
+plein de sites où les gens vont se
+plaindre les consommateurs, attention,
+tu as l'arnaque et cetera. Certains sous
+pseudonymes, certains pas sous
+pseudonyme
+et moi, il y a pas longtemps dans un
+casadre d'une escroquerie, j'ai retrouvé
+une autre victime de l'escroquerie qui
+elle elle a été victime depuis des
+années et des années. Donc ça faisait
+des années qu'elle avait regroupé tous
+les renseignements sur l'escroc en
+question. Elle m'a tout donné. Enfin
+vraiment, elle avait déjà fait
+l'enquête.
+Ouais. Vous pouvez avoir aussi des
+plaintes qui ont déjà été faites sur
+cette personne. Ce qui peut être utile
+quand vous allez voir la police en
+disant bah je sais qu'il y a déjà une
+plainte.
+Alors la police, on a été la voir, on a
+fait une déclaration et elle nous a dit
+"Bah écoutez, il y a pas grand chose à
+faire, peut-être essayer de de négocier
+avec lui." Et lui a dit "Ah mais non,
+mais j'ai j'ai fait les travaux, vous
+avez mal vu et cetera." Enfin, la
+mauvaise foi, vraiment très très
+basique. Et et il a dit "Bon, allez, je
+vous rembourse 1000 € à raison de 50 €
+par mois.
+Donc là, on a dit non, [rires]
+ça va pas. Ah mais je vais faire les
+travaux. Dans ce cas-là, je reviens, je
+fais les travaux. Enfin, totale
+contradiction. Et puis on a dit non, en
+fait vous ne remettez pas les pieds chez
+notre mère.
+Et tout ça, ça a été dit à l'oral ou à
+l'écrit.
+Alors, ça c'était au téléphone.
+OK. Moi, j'enregistre. Alors, je ferai
+attention, j'enregistrerai [grognement]
+tout.
+Ah voilà.
+Ouais. Non, non, mais parce que là,
+typiquement, s'il veut bien rembourser
+1000 € ça veut dire qu'il conçoit que il
+y a
+Voilà. Exactement. euh un problème ou
+euh et après s'il propose de venir faire
+le travail, ça veut dire que il reconnaî
+ne pas l'avoir fait.
+Je pense qu'il a de toute façon, il
+suffit de faire passer un expert sur
+place pour voir que le travail n'a pas
+été fait. C'est c'est flagrant
+parce qu'il y a des toiles d'araignée.
+Je veux dire, c'est pas juste que il est
+passé et que nous on a tout enlevé
+derrière. Je veux dire, c'est
+impossible. C'est vraiment clair qu'il y
+a rien qui s'est passé dans ces combles.
+Et je pense qu'il serait condamné et
+nous on va le poursuivre. Donc je pense
+qu'il sera condamné. Le problème c'est
+qu'il est insolvable parce que c'est
+c'est du crime organisé. Enfin, c'est de
+la délinquence. Euh et ils font en sorte
+de ne pas être solvable. C'est ce que
+c'est ce que la police nous a dit. Donc
+c'est un peu compliqué.
+Nous dans les cas d'un justement dans ce
+cadre de situation, on essaie de
+chercher euh des actifs. Parfois ils
+organisent leur insolvabilité puis en
+fait c'est au nom de leurs femmes. H
+on peut faire aussi des enquêtes pour
+voir le niveau de de vie quoi.
+Ouais. Euh parce que si en fait je sais
+pas, il roule en Ferrari, ce genre de
+choses. Bon, peut-être que c'est une
+Ferrari de location, que c'est pas la
+sienne, mais en tout cas ces gens-là,
+ils font beaucoup d'argent. Où est-ce
+que l'argent va ? [grognement]
+Écoute, je t'avou
+va forcément quelque part.
+Je t'avoue que comme ça s'est passé plus
+ou moins au moment de la préparation de
+l'émission, je me suis dit tiens, je
+vais en parler à Margot, on va voir.
+Mais
+vois, les histoires d'escroc, ça me
+j'adore parce que ils font toujours à un
+moment donné quand même un faux pas.
+Et puis suivre la piste de l'argent, ça
+amène toujours à quelque chose.
+C'est vrai. C'est vrai.
+Mais en tout cas, toujours prendre
+contact avec les personnes âgées, rester
+en contact, surveilleer les comptes
+bancaires si vous avez un œil dessus.
+C'est ça qui avait mis, moi je je sais
+que c'est ça qui avait mis la puce à
+l'oré à mon client
+et
+voilà de prendre des nouvelles parce
+qu'il y a des y a il y a vraiment des
+personnes qui sont isolées quoi. H
+H
+ce je te propose qu'on passe à la minute
+stupide. Allez
+la minute stupide.
+La minute stupide.
+Alors Margot, quelle est la chose la
+plus stupide que tu es faite de toute ta
+vie ?
+Alors ça ça reste dans le cadre de mes
+enquêtes mais il y a une fois où
+clairement tous les signaux étaient
+allumés pour me dire d'arrêter une
+mission et j'ai pas voulu écouter ces
+signaux. Enfin, je les ai entendu mais
+disons que je voulais tellement réussir
+ma mission que du coup ça s'est très mal
+fini. Et je pense que vraiment après
+coup, j'ai tellement regretté d'avoir
+fait ça, enfin de d'avoir pas mis un
+stop parce que ça s'est fini que euh ma
+cible, elle est pas juste venue à mon
+encontre et elle m'a détronché parce que
+ça ça m'urait bien allé et je serais
+rentré chez moi tranquillou. Non non,
+elle m'a barré le passage avec sa
+voiture. Elle est sortie de sa voiture
+de manière extrêmement agressive. Elle a
+ouvert la portière de ma voiture. Elle
+est rentrée au-dessus de moi. Elle m'a
+piqué ma caméra. Ah oui oui.
+Et après je pense que là si j'avais été
+un homme, elle m'aurait cassé la gueule.
+Hm
+hm.
+Donc là vraiment je me suis j'ai
+regretté d'avoir continué cette mission
+parce que depuis la veille euh ça
+sentait pas bon vraiment. Il y avait
+plein de petits trucs qui faisaient que
+on aurait dû arrêter et en fait on s'est
+un peu entêté avec l'enquêteur pour qui
+je travaillais.
+Tu soupçonnais déjà que potentiellement
+la cible t'avait repéré ?
+Euh pas la cible. En fait, il y a eu un
+concours de malchance au début. Euh,
+c'est-à-dire que on m'avait donné une
+adresse, c'était pas la bonne. On
+s'était trompé d'adresse. Donc moi, à 6h
+du matin, 6h où tout le monde dort,
+j'étais à la mauvaise adresse. Donc le
+temps que j'aille à la bonne adresse à
+7h du matin, on regarde si on est devant
+la bonne maison, donc faut qu'on passe
+devant et cetera. Et c'était dans un
+endroit qui était extrêmement désert. Et
+en fait, vraiment, mais pas de chance,
+euh la femme est sortie, elle a sorti
+ses poubelles à 7h du matin. Hm hm. Donc
+qui sort ses poubelles à 7h du matin ?
+[rires] Voilà. Donc là, je pense que ça
+c'était la malchance
+et après tout s'est enchaîné. Vous
+savez, il y a des missions quand vous
+commencer à pas avoir de chance, tout
+s'enchaîne.
+Et puis en fait ce monsieur était très
+contrarié, très agressif parce qu'il
+pensait que on suivait sa femme.
+D'accord.
+Et là, j'ai fait un truc que je fais
+jamais d'habitude mais parce que j'avais
+pas trop le choix puisquil avait mon
+matériel que voilà,
+c'est que j'ai pas dit que j'étais pas
+détective. Non mais en fait, je suis là
+pour un tournage. Non non, j'ai pas
+voulu prendre pour un imbécile encore
+plus que
+la situation était déjà complexe. Je
+voulais pas en plus qu'il soit encore
+plus énervé du fait qu'il ait
+l'impression que je le prenne pour un
+imbécile. Donc je lui dis "Non, non,
+vous inquiétez pas, je ne suivais pas
+votre femme, c'est vous que je suivais."
+[rires]
+Bah oui, tout va bien.
+Tout va bien. Alors, il a été un petit
+peu déstabilisé par cette réponse et
+puis en fait, je pense qu'il a été très
+déstabilisé parce que je suis restée
+extrêmement calme.
+Ouais. Mais tu as eu quand même peur toi
+en vrai non. En vrai sur le coup j'étais
+extrêmement calme. J'avais pas peur.
+D'accord.
+Après coup je me suis rendu compte que
+je m'étais mise dans une situation de
+danger.
+C'est pour ça que j'ai trouvé que
+c'était vraiment stupide parce que rien
+ne vaut de se mettre en danger.
+Imagine il m'aurait cassé la gueule ou
+quoi que ce soit. Ça n'en valait pas la
+peine.
+En fait on était aussi limité dans le
+temps. C'est-à-dire qu'on pouvait pas se
+dire bon ben on laisse passer de tr
+jours et on reviendra. On avait une
+deadline donc il y avait plein de
+pressions qui faisaient que
+c'était pas bon.
+On s on s'est entêté pour rien et
+c'était vraiment trop stupide.
+Je regrette.
+Ça c'est fini avec les gendarmes et tout
+ça.
+Ah oui quand même.
+Oui oui parce qu'en fait lui il m'a dit
+qu'il allait appeler les gendarmes et
+j'ai dit parfait parce que lui il
+voulait absolument me faire dire pour
+qui je travaillais, ce que je faisais et
+cetera. Et moi j'ai je suis restée une
+tombe et ça l'a énervé encore plus.
+Et je lui ai dit "Mais de toute façon,
+je ne vous dois rien. Euh, il voulait
+que je vous montre ma carte, je sais pas
+quoi." J'ai dit "Mais moi, je ne vous
+dois rien à vous en fait." Donc moi,
+j'attendais les gendarmes, sauf que je
+me suis rendu compte qu'il avait pas
+appelé les gendarmes. Après, il a pris
+ma caméra, il est rentré chez lui. Donc
+moi, j'ai dû j'ai dû aller jusqu'à
+devant chez lui pour attendre les
+gendarmes et il récupéré ma caméra. Donc
+ça c'était problématique.
+De toute façon, il y avait rien. De
+toute façon, il y avait rien à voir
+d'intéressant parce que voilà. Donc ça
+c'était pas trop gênant. Et puis euh les
+gendarmes quand ils sont arrivés, moi
+j'ai discuté avec le gendarme très
+brièvement euh sans raconter pourquoi on
+était là ni rien et lui il a il était
+dégoûté parce que finalement il a jamais
+su pourquoi j'étais là quoi.
+Mais enfin il doit se douter parce que
+bon c'était quelqu'un qui faisait des
+choses pas très nettes.
+Donc aujourd'hui tu ferais les choses
+clairement différemment.
+Ah aujourd'hui j'écoute mon instinct. Si
+ça pue, je m'en vais. Point. Ouais.
+Et je pense que toute personne qui sent
+un danger doit s'en aller dans n'importe
+quelle situation que ce soit des
+situations d'emprise aussi par exemple.
+On a quand même des signaux d'alerte. H
+par exemple, toutes les personnes qui
+sont sorties d'une relation d'emprise ou
+d'une dérive sectaire, tu dois le savoir
+parce que tu en as rencontré plein.
+Elles te disent jamais j'ai rien vu
+venir. Elles te disent toujours mais
+oui, il y avait ça, il y avait ça, il y
+avait ça.
+J'ai pas voulu l'écouter quoi.
+Merci Margaot, merci à toi.
+[musique]
+Information de dernière minute. Depuis
+l'enregistrement de cette émission, une
+femme s'est manifestée pour ajouter son
+témoignage à celui d'Inas Chatin, la
+cliente de Margaot Ducken, au sujet du
+réseau pédocriminel dont elle a été
+victime. Je vous mets des liens sur
+toute cette affaire dans les ressources
+de l'émission sur le site
+métadeschoc.fr.
+[musique]
+Cette série vous a plu ? Pensez à mettre
+des étoiles et à laisser un commentaire
+sur votre appli. Cela permettra de la
+faire connaître au plus grand nombre.
+Sur ce, on se retrouve vendredi prochain
+à 18h pour le lancement d'une nouvelle
+série King. Cette fois, j'échangerai
+avec un diéticien et éducateur sportif
+au sujet des mythes qui entourent la
+pratique sportive. Il y a beaucoup à
+dire et mon invité ne s'en est pas
+privé. D'ici là, prenez le temps
+d'observer la manière dont vous pensez
+de la questionner.
+Vous n'imaginez pas ce que vous pensez.

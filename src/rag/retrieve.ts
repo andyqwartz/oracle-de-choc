@@ -10,6 +10,9 @@ export async function retrieve(db: AnyOrama, query: string, topK: number): Promi
   const results = await search(db, {
     mode: 'vector',
     vector: { value: embedding, property: 'embedding' },
+    // Orama's default similarity threshold (~0.8) filters out real results —
+    // MiniLM-384 cosine scores sit around 0.4–0.6. Let topK decide instead.
+    similarity: 0,
     limit: topK,
   });
 

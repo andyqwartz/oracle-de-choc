@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pipeline } from '@huggingface/transformers';
-import { create, save } from '@orama/orama';
+import { create, insert, save } from '@orama/orama';
 import tokenizer from 'gpt-tokenizer';
 
 const TRANSCRIPTS_DIR = path.resolve(process.cwd(), 'data', 'transcripts');
@@ -17,65 +17,73 @@ const META_FILE = path.join(OUTPUT_DIR, 'oracle-index.meta.json');
 const CHUNK_SIZE = 350;
 const CHUNK_OVERLAP = 60;
 
-// 1. Read all .md and .txt files from data/transcripts/
+// 1. Read all episode transcripts. Each sub-directory of data/transcripts/ is one
+//    episode; its formatted text lives at <episode>/formats/transcript_formatted.txt.
 function readTranscriptFiles() {
   const files = new Map();
 
   if (!fs.existsSync(TRANSCRIPTS_DIR)) {
     console.error(`Transcripts directory not found: ${TRANSCRIPTS_DIR}`);
-    console.error('Create data/transcripts/ and add .md or .txt files.');
+    console.error('Expected one sub-directory per episode, each containing formats/transcript_formatted.txt.');
     process.exit(1);
   }
 
   const entries = fs.readdirSync(TRANSCRIPTS_DIR, { withFileTypes: true });
   for (const entry of entries) {
-    if (!entry.isFile()) continue;
-    const ext = path.extname(entry.name).toLowerCase();
-    if (ext !== '.md' && ext !== '.txt') continue;
-    const filePath = path.join(TRANSCRIPTS_DIR, entry.name);
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const id = path.basename(entry.name, ext);
-    files.set(id, content);
+    if (!entry.isDirectory()) continue;
+    const episodeDir = path.join(TRANSCRIPTS_DIR, entry.name);
+    const txtPath = path.join(episodeDir, 'formats', 'transcript_formatted.txt');
+    if (!fs.existsSync(txtPath)) continue;
+    const content = fs.readFileSync(txtPath, 'utf-8');
+    files.set(entry.name, content);
   }
 
   return files;
 }
 
-// 2. Split text into paragraphs (separated by blank lines), then chunk with overlap
+// 2. Split text into chunks. The formatted transcripts are one subtitle-style line
+//    per sentence, each prefixed with a timestamp like "56:02 ". Every line is a
+//    phrase block separated by a blank line. We strip the timestamp prefix, drop
+//    empty/short markers, then accumulate lines until the CHUNK_SIZE token budget.
+//    gpt-tokenizer v2 returns a plain number[] from encode() (no .ids), so we use it directly.
+function stripTimestamp(line) {
+  // Matches "MM:SS", "H:MM:SS", with optional trailing space.
+  return line.replace(/^\s*\d{1,2}:\d{2}(:\d{2})?\s*/, '').trim();
+}
+
 function splitIntoChunks(text, episodeId) {
+  // Split into line-blocks (paragraphs separated by blank lines), then into lines.
   const paragraphs = text.split(/\n\s*\n/).map(p => p.trim()).filter(p => p.length > 0);
 
   const chunks = [];
-  let currentChunk = '';
-  let chunkIndex = 0;
+  let currentLines = [];
+  let currentTokens = 0;
+
+  const flush = () => {
+    if (currentLines.length > 0) {
+      const content = currentLines.join('\n').trim();
+      if (content.length > 0) {
+        chunks.push({ content, episode: episodeId, chunkIndex: chunks.length });
+      }
+      currentLines = [];
+      currentTokens = 0;
+    }
+  };
 
   for (const para of paragraphs) {
-    const paraTokens = tokenizer.encode(para).ids.length;
+    const lines = para.split('\n')
+      .map(stripTimestamp)
+      .filter(l => l.length > 0);
 
-    if (currentChunk.length > 0 && tokenizer.encode(currentChunk).ids.length + paraTokens > CHUNK_SIZE) {
-      chunks.push({ content: currentChunk.trim(), episode: episodeId, chunkIndex: chunkIndex++ });
-      const overlapTokens = tokenizer.encode(currentChunk).ids.slice(-CHUNK_OVERLAP);
-      currentChunk = tokenizer.decode(overlapTokens) + '\n\n' + para;
-    } else {
-      if (currentChunk.length > 0) {
-        currentChunk += '\n\n' + para;
-      } else {
-        currentChunk = para;
+    for (const line of lines) {
+      const lineTokens = tokenizer.encode(line).length;
+      if (currentLines.length > 0 && currentTokens + lineTokens > CHUNK_SIZE) {
+        flush();
       }
+      currentLines.push(line);
+      currentTokens += lineTokens;
     }
-
-    while (tokenizer.encode(currentChunk).ids.length > CHUNK_SIZE) {
-      const tokens = tokenizer.encode(currentChunk);
-      const limitTokens = tokens.ids.slice(0, CHUNK_SIZE);
-      const limitText = tokenizer.decode(limitTokens);
-      chunks.push({ content: limitText.trim(), episode: episodeId, chunkIndex: chunkIndex++ });
-      const remainderTokens = tokens.ids.slice(CHUNK_SIZE - CHUNK_OVERLAP);
-      currentChunk = tokenizer.decode(remainderTokens);
-    }
-  }
-
-  if (currentChunk.trim().length > 0) {
-    chunks.push({ content: currentChunk.trim(), episode: episodeId, chunkIndex: chunkIndex });
+    flush();
   }
 
   return chunks;
@@ -119,9 +127,10 @@ async function main() {
 
     for (const chunk of chunks) {
       const embedding = await embedPipeline(chunk.content, { pooling: 'mean', normalize: true });
-      const vector = Array.isArray(embedding) ? embedding : Array.from(embedding);
+      // transformers.js returns a Tensor; its flat data (typed array) is the 384-dim vector.
+      const vector = Array.from(embedding.data);
 
-      await db.insert({
+      await insert(db, {
         content: chunk.content,
         embedding: vector,
         episode: chunk.episode,
