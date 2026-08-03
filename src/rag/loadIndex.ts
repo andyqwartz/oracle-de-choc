@@ -1,9 +1,9 @@
 // src/rag/loadIndex.ts
 import { CONFIG } from '../config';
 import { restore } from '@orama/plugin-data-persistence';
-import type { Orama } from '@orama/orama';
+import type { AnyOrama } from '@orama/orama';
 
-export async function loadIndex(): Promise<Orama<any>> {
+export async function loadIndex(): Promise<AnyOrama> {
   const metaRes = await fetch(CONFIG.indexMetaUrl);
   if (!metaRes.ok) {
     throw new Error(`Failed to fetch index meta: ${metaRes.status} ${metaRes.statusText}`);

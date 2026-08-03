@@ -2,9 +2,10 @@
 // Runs inside a Web Worker. Receives messages from the main thread,
 // loads the wllama model, and streams generation tokens back.
 
-import { loadModelFromHF, createChatCompletion } from '@wllama/wllama';
+import { Wllama } from '@wllama/wllama';
+import type { ChatMessage, GenerationParams } from '../types';
 
-let model: any = null;
+let wllama: Wllama | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
   const { type, id, messages, params } = event.data;
@@ -14,14 +15,18 @@ self.onmessage = async (event: MessageEvent) => {
       case 'init': {
         self.postMessage({ type: 'progress', loaded: 0, total: 1 });
 
-        model = await loadModelFromHF(
+        wllama = new Wllama({
+          default: '/oracle-de-choc/wllama',
+        });
+
+        await wllama.loadModelFromHF(
           {
             repo: 'Qwen/Qwen2.5-0.5B-Instruct-GGUF',
             file: 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
           },
           {
-            progressCallback: (loaded: number, total: number) => {
-              self.postMessage({ type: 'progress', loaded, total });
+            progressCallback: (opts: { loaded: number; total: number }) => {
+              self.postMessage({ type: 'progress', loaded: opts.loaded, total: opts.total });
             },
           }
         );
@@ -31,30 +36,38 @@ self.onmessage = async (event: MessageEvent) => {
       }
 
       case 'generate': {
-        if (!model) {
+        if (!wllama) {
           throw new Error('Model not initialized. Send "init" first.');
         }
 
-        const stream = await createChatCompletion(model, messages, {
-          temperature: params.temperature,
-          top_k: params.top_k,
-          top_p: params.top_p,
-          repeat_penalty: params.repeat_penalty,
-          n_predict: params.n_predict,
-          n_ctx: params.n_ctx,
-          stream: true,
-        });
+        const p = params as GenerationParams;
 
-        for await (const token of stream) {
-          self.postMessage({ type: 'token', id, text: token });
-        }
+        // wllama v3 API: createChatCompletion takes a single options object.
+        // repeat_penalty -> penalty_repeat, n_predict -> max_tokens.
+        // n_ctx is a model-loading param, not a completion param.
+        // With stream:true + onData, the function returns Promise<void>.
+        await wllama.createChatCompletion({
+          messages: messages as any,
+          stream: true,
+          onData: (chunk: any) => {
+            const text = chunk.choices?.[0]?.delta?.content ?? '';
+            if (text) {
+              self.postMessage({ type: 'token', id, text });
+            }
+          },
+          temperature: p.temperature,
+          top_k: p.top_k,
+          top_p: p.top_p,
+          penalty_repeat: p.repeat_penalty,
+          max_tokens: p.n_predict,
+        });
 
         self.postMessage({ type: 'done', id });
         break;
       }
 
       case 'abort': {
-        model = null;
+        wllama = null;
         self.postMessage({ type: 'done', id });
         break;
       }
