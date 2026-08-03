@@ -1,0 +1,4 @@
+node_modules/
+dist/
+public/index/oracle-index.json
+public/index/oracle-index.meta.json
