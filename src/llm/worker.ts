@@ -23,7 +23,11 @@ self.onmessage = async (event: MessageEvent) => {
         self.postMessage({ type: 'model-status', state: 'loading', phase: 'download', progress: 0 });
 
         wllama = new Wllama({
-          default: '/oracle-de-choc/wllama',
+          // Full path to the wllama WASM binary. It's copied into public/wllama/
+          // so it's served by the app (dev + GitHub Pages): absoluteUrl() resolves
+          // this to /oracle-de-choc/wllama/wllama.wasm, which must return actual
+          // wasm bytes (not an HTML 404 fallback).
+          default: '/oracle-de-choc/wllama/wllama.wasm',
         });
 
         await wllama.loadModelFromHF(
