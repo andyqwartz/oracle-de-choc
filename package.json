@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@huggingface/transformers": "^3.0.0",
-    "@orama/orama": "^2.0.0",
-    "@orama/plugin-data-persistence": "^2.0.0",
-    "wllama": "^0.1.0"
+    "@orama/orama": "^3.1.0",
+    "@orama/plugin-data-persistence": "^3.1.0",
+    "@wllama/wllama": "^3.5.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
