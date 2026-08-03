@@ -23,12 +23,14 @@ self.onmessage = async (event: MessageEvent) => {
         self.postMessage({ type: 'model-status', state: 'loading', phase: 'download', progress: 0 });
 
         wllama = new Wllama({
-          // Full path to the wllama WASM binary. It's copied into public/wllama/
-          // so it's served by the app (dev + GitHub Pages): absoluteUrl() resolves
-          // this to /oracle-de-choc/wllama/wllama.wasm, which must return actual
-          // wasm bytes (not an HTML 404 fallback).
+          // Full path to the wllama WASM binary (copied into public/wllama/).
           default: '/oracle-de-choc/wllama/wllama.wasm',
         });
+
+        // n_ctx is a model-loading parameter (default 1024 in wllama). We must pass
+        // the configured value here — RAG context + system prompt + history can
+        // exceed 1024 tokens and would otherwise fail with "exceeds context size".
+        const nCtx = params?.n_ctx ?? 4096;
 
         await wllama.loadModelFromHF(
           {
@@ -36,6 +38,7 @@ self.onmessage = async (event: MessageEvent) => {
             file: 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
           },
           {
+            n_ctx: nCtx,
             progressCallback: (opts: { loaded: number; total: number }) => {
               const progress = opts.total > 0 ? opts.loaded / opts.total : 0;
               const loadedMB = +(opts.loaded / (1024 * 1024)).toFixed(1);

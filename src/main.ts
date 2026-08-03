@@ -61,7 +61,20 @@ async function main() {
         sources = await retrieve(idx, text, settings.ragTopK, app.selectedEpisode);
 
         if (sources.length > 0) {
-          // Show sources while we wait for the model, as part of the system context.
+          // Cap the RAG context to a token budget so the total prompt (system +
+          // context + history) stays within n_ctx after reserving room for output.
+          // Rough estimate: ~4 chars per token for French.
+          const CONTEXT_BUDGET_TOKENS = 1600;
+          const MAX_CHARS = CONTEXT_BUDGET_TOKENS * 4;
+          let used = 0;
+          let kept: typeof sources = [];
+          for (const s of sources) {
+            const cost = s.content.length;
+            if (kept.length > 0 && used + cost > MAX_CHARS) break;
+            kept.push(s);
+            used += cost;
+          }
+          sources = kept;
           context = buildContextBlock(sources);
         } else {
           context = 'Aucun extrait pertinent trouvé.';
@@ -76,9 +89,14 @@ async function main() {
       // Trim a trailing placeholder line if no context was injected.
       const systemPrompt = basePrompt.trim();
 
+      // Keep the conversation context-bounded: the RAG context + system prompt
+      // already consume most of n_ctx, so only pass the most recent turns.
+      const MAX_HISTORY_TURNS = 6; // 6 user/assistant pairs = 12 messages
+      const window = history.slice(-MAX_HISTORY_TURNS);
+
       const messages: ChatMessage[] = [
         { role: 'system', content: systemPrompt },
-        ...history.map((m) => ({ role: m.role, content: m.content }) as ChatMessage),
+        ...window.map((m) => ({ role: m.role, content: m.content }) as ChatMessage),
       ];
 
       // ---- Stream generation (assistant bubble + token stream) ----

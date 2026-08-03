@@ -3,6 +3,7 @@
 // and exposes init(), generate(), abort().
 
 import type { ChatMessage, GenerationParams, ModelStatus } from '../types';
+import { getSettings } from '../settings/store';
 
 interface WorkerMessage {
   type: string;
@@ -67,7 +68,10 @@ export async function initEngine(
     };
 
     w.addEventListener('message', handler);
-    w.postMessage({ type: 'init' });
+    // Pass n_ctx (a model-loading param in wllama) so the worker allocates enough
+    // context for RAG + system prompt + history. Default is 1024 (too small).
+    const settings = getSettings();
+    w.postMessage({ type: 'init', params: { n_ctx: settings.n_ctx } });
   });
 }
 
