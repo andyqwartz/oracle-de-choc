@@ -6,8 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pipeline } from '@huggingface/transformers';
-import { create } from '@orama/orama';
-import { persist } from '@orama/plugin-data-persistence';
+import { create, save } from '@orama/orama';
 import tokenizer from 'gpt-tokenizer';
 
 const TRANSCRIPTS_DIR = path.resolve(process.cwd(), 'data', 'transcripts');
@@ -137,7 +136,7 @@ async function main() {
   console.log(`Total chunks: ${totalChunks}. Persisting index...`);
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  const jsonData = await persist(db, 'json');
+  const jsonData = await save(db);
   fs.writeFileSync(INDEX_FILE, JSON.stringify(jsonData));
 
   // Write meta

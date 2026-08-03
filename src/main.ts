@@ -2,6 +2,8 @@
 // then wires up the UI once both are ready.
 
 import { CONFIG } from './config';
+import './ui/styles/tokens.css';
+import './ui/styles/app.css';
 import { initEngine } from './llm/engine';
 import { loadIndex } from './rag/loadIndex';
 import { AppShell } from './ui/layout/AppShell';

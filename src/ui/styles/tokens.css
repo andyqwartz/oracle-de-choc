@@ -1,6 +1,6 @@
-// src/ui/styles/tokens.css
-// Single source of truth for all CSS variables.
-// No color or size value appears elsewhere in the codebase.
+/* src/ui/styles/tokens.css */
+/* Single source of truth for all CSS variables. */
+/* No color or size value appears elsewhere in the codebase. */
 
 :root {
   --color-bg: #1a1a1a;
