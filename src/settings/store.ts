@@ -1,6 +1,4 @@
 // src/settings/store.ts
-// Persists settings to localStorage under the key 'oracle-de-choc:settings'.
-
 import { SETTINGS_SCHEMA, type SettingsSchema } from './schema';
 
 export type Settings = {
@@ -22,7 +20,6 @@ export function getSettings(): Settings {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw === null) return getDefaultSettings();
     const parsed = JSON.parse(raw);
-    // Merge with defaults to handle new keys if schema evolves
     return { ...getDefaultSettings(), ...parsed };
   } catch {
     return getDefaultSettings();

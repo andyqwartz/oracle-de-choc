@@ -1,8 +1,5 @@
 // src/ui/layout/AppShell.ts
-// Top-level layout: Sidebar + ChatPanel + SettingsDrawer.
-// Registers itself as the entry point for the app.
-
-import { Sidebar } from '../Sidebar';
+import { Sidebar } from './Sidebar';
 import { ChatPanel } from '../chat/ChatPanel';
 import { SettingsDrawer } from '../SettingsDrawer';
 

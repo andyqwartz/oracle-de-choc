@@ -2,7 +2,7 @@
 // Runs inside a Web Worker. Receives messages from the main thread,
 // loads the wllama model, and streams generation tokens back.
 
-import { loadModelFromHF, createChatCompletion } from 'wllama';
+import { loadModelFromHF, createChatCompletion } from '@wllama/wllama';
 
 let model: any = null;
 
@@ -54,10 +54,6 @@ self.onmessage = async (event: MessageEvent) => {
       }
 
       case 'abort': {
-        // wllama doesn't have a native abort, so we null the model reference
-        // and the generate loop will fail on next iteration.
-        // A more robust approach: track an AbortSignal and pass it to createChatCompletion
-        // when wllama supports it. For now, we set model to null to stop generation.
         model = null;
         self.postMessage({ type: 'done', id });
         break;

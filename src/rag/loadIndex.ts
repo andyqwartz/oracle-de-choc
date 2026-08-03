@@ -1,13 +1,9 @@
 // src/rag/loadIndex.ts
-// Fetches the pre-built index JSON from the public directory (or HF dataset URL),
-// validates the embedding model, restores Orama in memory.
-
 import { CONFIG } from '../config';
 import { restore } from '@orama/plugin-data-persistence';
 import type { Orama } from '@orama/orama';
 
-export async function loadIndex(): Promise<Orama> {
-  // Fetch meta first to validate
+export async function loadIndex(): Promise<Orama<any>> {
   const metaRes = await fetch(CONFIG.indexMetaUrl);
   if (!metaRes.ok) {
     throw new Error(`Failed to fetch index meta: ${metaRes.status} ${metaRes.statusText}`);
@@ -21,14 +17,12 @@ export async function loadIndex(): Promise<Orama> {
     );
   }
 
-  // Fetch the full index JSON
   const indexRes = await fetch(CONFIG.indexUrl);
   if (!indexRes.ok) {
     throw new Error(`Failed to fetch index: ${indexRes.status} ${indexRes.statusText}`);
   }
   const indexData = await indexRes.json();
 
-  // Restore Orama from JSON
   const db = await restore('json', indexData);
   return db;
 }

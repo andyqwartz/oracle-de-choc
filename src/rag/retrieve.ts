@@ -1,15 +1,14 @@
 // src/rag/retrieve.ts
-// searchVector + context block builder.
-
 import { searchVector } from '@orama/orama';
 import type { Orama } from '@orama/orama';
 import { embedQuery } from './embedQuery';
 import type { RagChunk } from '../types';
 
-export async function retrieve(db: Orama, query: string, topK: number): Promise<RagChunk[]> {
+export async function retrieve(db: Orama<any>, query: string, topK: number): Promise<RagChunk[]> {
   const embedding = await embedQuery(query);
 
   const results = await searchVector(db, {
+    mode: 'vector',
     vector: { value: embedding, property: 'embedding' },
     limit: topK,
   });
