@@ -7,11 +7,11 @@ export interface SettingsSchema {
   top_k: { type: 'number'; min: 1; max: 100; step: 1; default: 40 };
   top_p: { type: 'number'; min: 0; max: 1; step: 0.05; default: 0.9 };
   repeat_penalty: { type: 'number'; min: 1.0; max: 2.0; step: 0.05; default: 1.1 };
-  n_predict: { type: 'number'; min: 32; max: 1024; step: 1; default: 256 };
+  n_predict: { type: 'number'; min: 32; max: 1024; step: 1; default: 600 };
   n_ctx: { type: 'select'; options: [2048, 4096, 8192]; default: 4096 };
   systemPrompt: { type: 'textarea'; default: string };
   ragEnabled: { type: 'boolean'; default: true };
-  ragTopK: { type: 'number'; min: 1; max: 10; step: 1; default: 4 };
+  ragTopK: { type: 'number'; min: 1; max: 10; step: 1; default: 5 };
 }
 
 export const SETTINGS_SCHEMA: SettingsSchema = {
@@ -19,7 +19,7 @@ export const SETTINGS_SCHEMA: SettingsSchema = {
   top_k: { type: 'number', min: 1, max: 100, step: 1, default: 40 },
   top_p: { type: 'number', min: 0, max: 1, step: 0.05, default: 0.9 },
   repeat_penalty: { type: 'number', min: 1.0, max: 2.0, step: 0.05, default: 1.1 },
-  n_predict: { type: 'number', min: 32, max: 1024, step: 1, default: 256 },
+  n_predict: { type: 'number', min: 32, max: 1024, step: 1, default: 600 },
   n_ctx: { type: 'select', options: [2048, 4096, 8192] as const, default: 4096 },
   systemPrompt: {
     type: 'textarea',
@@ -29,5 +29,5 @@ Extraits :
 {context}`,
   },
   ragEnabled: { type: 'boolean', default: true },
-  ragTopK: { type: 'number', min: 1, max: 10, step: 1, default: 4 },
+  ragTopK: { type: 'number', min: 1, max: 10, step: 1, default: 5 },
 };

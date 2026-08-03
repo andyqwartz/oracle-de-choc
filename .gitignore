@@ -6,6 +6,8 @@ dist/
 # Hosted on Hugging Face: AndyVampiro/oracle-de-choc-index
 public/index/oracle-index.json
 public/index/oracle-index.meta.json
+public/index/chunks.json
+public/index/embeddings.bin
 
 # Transcripts — source material, kept local only (index lives on HF).
 data/transcripts/

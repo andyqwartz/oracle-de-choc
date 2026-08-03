@@ -3,7 +3,9 @@
 
 const isDev = import.meta.env?.DEV === true;
 
-export const HF_INDEX_REPO = 'AndyVampiro/oracle-de-choc-index';
+export const HF_INDEX_REPO = 'AndyVampiro/oracle-de-choc-index-v2';
+
+const HF_BASE = `https://huggingface.co/datasets/${HF_INDEX_REPO}/resolve/main`;
 
 export const CONFIG = {
   // LLM model on Hugging Face Hub
@@ -14,19 +16,19 @@ export const CONFIG = {
   embeddingModel: 'Xenova/all-MiniLM-L6-v2',
   embeddingDim: 384,
 
-  // RAG index location. The built index (~200 MB) is too large for git/GitHub Pages,
-  // so it lives on a Hugging Face dataset. In dev, prefer the local copy for speed.
-  indexUrl: isDev
-    ? '/oracle-de-choc/index/oracle-index.json'
-    : `https://huggingface.co/datasets/${HF_INDEX_REPO}/resolve/main/oracle-index.json`,
+  // RAG index. COMPACT format (chunks.json + embeddings.bin) — the old single
+  // 200 MB oracle-index.json JSON forced a hard freeze on load, so it's gone.
+  // In dev, use the local copies for speed; in prod, load from Hugging Face.
   indexMetaUrl: isDev
     ? '/oracle-de-choc/index/oracle-index.meta.json'
-    : `https://huggingface.co/datasets/${HF_INDEX_REPO}/resolve/main/oracle-index.meta.json`,
+    : `${HF_BASE}/oracle-index.meta.json`,
+  chunksUrl: isDev
+    ? '/oracle-de-choc/index/chunks.json'
+    : `${HF_BASE}/chunks.json`,
+  embeddingsUrl: isDev
+    ? '/oracle-de-choc/index/embeddings.bin'
+    : `${HF_BASE}/embeddings.bin`,
 
   // Episode list (small, shipped with the app itself — also mirrored on HF).
   episodesUrl: '/oracle-de-choc/index/episodes.json',
-
-  // Chunking parameters (must match build-index.mjs exactly)
-  chunkSize: 350,
-  chunkOverlap: 60,
 } as const;

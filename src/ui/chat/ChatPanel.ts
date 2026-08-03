@@ -52,6 +52,10 @@ export class ChatPanel {
     this.messageList.appendStreamingText('assistant', text, isLast);
   }
 
+  attachSources(sources: RagChunk[]) {
+    this.messageList.attachSourcesToLast(sources);
+  }
+
   setStatus(text: string, kind: 'default' | 'error' | 'loading' | 'ok' = 'default') {
     const el = this.statusBar.querySelector('#status-text') as HTMLElement;
     if (!el) return;

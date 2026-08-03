@@ -129,6 +129,25 @@ export class MessageList {
     this.scrollToBottom();
   }
 
+  // Attach RAG source chips to the last assistant message.
+  attachSourcesToLast(sources: RagChunk[]) {
+    const messages = this.container.querySelectorAll('.message-assistant');
+    const last = messages[messages.length - 1] as HTMLElement | undefined;
+    if (!last || !sources || sources.length === 0) return;
+    if (last.querySelector('.sources')) return;
+
+    const sourcesEl = document.createElement('div');
+    sourcesEl.className = 'sources';
+    for (const s of sources.slice(0, 4)) {
+      const chip = document.createElement('span');
+      chip.className = 'source-chip';
+      chip.textContent = s.episode;
+      sourcesEl.appendChild(chip);
+    }
+    last.appendChild(sourcesEl);
+    this.scrollToBottom();
+  }
+
   clear() {
     this.container.innerHTML = '';
     this.welcomeRendered = false;

@@ -143,6 +143,9 @@ export class AppShell {
   streamToken(text: string, isLast = false) {
     this.chatPanel.streamToken(text, isLast);
   }
+  attachSources(s: any[]) {
+    this.chatPanel.attachSources(s);
+  }
   clearMessages() {
     this.chatPanel.clearMessages();
   }

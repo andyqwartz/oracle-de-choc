@@ -3,34 +3,33 @@
 
 import './ui/styles/tokens.css';
 import './ui/styles/app.css';
-import { CONFIG } from './config';
 import { initEngine, generate, abort } from './llm/engine';
-import { loadIndex } from './rag/loadIndex';
+import { loadIndex, type CompactIndex } from './rag/loadIndex';
 import { loadEpisodes } from './rag/episodes';
 import { retrieve, buildContextBlock } from './rag/retrieve';
 import { AppShell } from './ui/layout/AppShell';
 import { getSettings } from './settings/store';
-import type { ChatMessage } from './types';
+import type { ChatMessage, RagChunk } from './types';
 
 async function main() {
   const app = new AppShell();
   app.render(document.getElementById('app')!);
 
-  let db: any = null;
+  let idx: CompactIndex | null = null;
 
-  // Conversation history (excluding system prompt, added per request)
+  // Conversation history (excluding system prompt, added per request).
   let history: { role: 'user' | 'assistant'; content: string }[] = [];
 
   app.setStatus('Initialisation…', 'loading');
 
   // ---- Model + index loading (parallel) ----
   const engineReady = initEngine(
-    (status) => app.setModelStatus(status),      // top bar + settings model panel
+    (status) => app.setModelStatus(status),
     (loaded, total) => app.setProgress(loaded, total)
   );
 
   const indexReady = loadIndex().then((d) => {
-    db = d;
+    idx = d;
     return d;
   });
 
@@ -40,7 +39,7 @@ async function main() {
   let generationInFlight = false;
 
   async function sendMessage(text: string) {
-    if (generationInFlight || !db) return;
+    if (generationInFlight || !idx) return;
 
     const settings = getSettings();
     generationInFlight = true;
@@ -51,25 +50,39 @@ async function main() {
 
     app.setStatus('Génération…', 'loading');
 
+    let fullResponse = '';
+    let sources: RagChunk[] = [];
+
     try {
       // ---- RAG retrieval ----
-      let sources: { content: string; episode: string; score?: number }[] = [];
       let context = '';
-      if (settings.ragEnabled && db) {
-        const scopeEp = app.selectedEpisode;
-        sources = await retrieve(db, text, settings.ragTopK, scopeEp);
-        context = buildContextBlock(sources);
+      if (settings.ragEnabled && idx) {
+        // Scoping to a single episode is handled by retrieve().
+        sources = await retrieve(idx, text, settings.ragTopK, app.selectedEpisode);
+
+        if (sources.length > 0) {
+          // Show sources while we wait for the model, as part of the system context.
+          context = buildContextBlock(sources);
+        } else {
+          context = 'Aucun extrait pertinent trouvé.';
+        }
       }
 
       // ---- Build messages (system prompt with context) ----
-      const systemPrompt = settings.systemPrompt.replace('{context}', context || 'Aucun extrait pertinent trouvé.');
+      const basePrompt = settings.systemPrompt.replace(
+        '{context}',
+        context || 'Aucun extrait pertinent trouvé.'
+      );
+      // Trim a trailing placeholder line if no context was injected.
+      const systemPrompt = basePrompt.trim();
+
       const messages: ChatMessage[] = [
         { role: 'system', content: systemPrompt },
         ...history.map((m) => ({ role: m.role, content: m.content }) as ChatMessage),
       ];
 
-      // ---- Stream generation ----
-      app.appendMessage('assistant', '', sources);
+      // ---- Stream generation (assistant bubble + token stream) ----
+      app.appendMessage('assistant', '');
       await generate(
         messages,
         {
@@ -80,11 +93,19 @@ async function main() {
           n_predict: settings.n_predict,
           n_ctx: settings.n_ctx,
         },
-        (token) => app.streamToken(token)
+        (token) => {
+          fullResponse += token;
+          app.streamToken(fullResponse);
+        }
       );
-      app.streamToken('', true);
+      app.streamToken(fullResponse, true);
 
-      history.push({ role: 'assistant', content: '' }); // placeholder; final text accumulated
+      // Attach source chips to the completed assistant bubble.
+      if (sources.length > 0) app.attachSources(sources);
+
+      // Push the REAL response into history (so the next turn has context).
+      history.push({ role: 'assistant', content: fullResponse });
+
       app.setStatus('Prêt.', 'ok');
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
