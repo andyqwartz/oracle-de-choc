@@ -7,6 +7,7 @@ export class Sidebar {
   private episodes: string[] = [];
   private searchTerm = '';
   private onSelectEpisode: ((episode: string | null) => void) | null = null;
+  private onRequestCloseCb: (() => void) | null = null;
   private selected: string | null = null;
 
   constructor() {
@@ -19,8 +20,13 @@ export class Sidebar {
   render(): HTMLElement {
     this.container.innerHTML = `
       <div class="sidebar-header">
-        <div class="sidebar-title">Méta de Choc</div>
-        <div class="sidebar-sub">Épisodes · archives</div>
+        <div class="sidebar-title-wrap">
+          <div>
+            <div class="sidebar-title">Méta de Choc</div>
+            <div class="sidebar-sub">Épisodes · archives</div>
+          </div>
+          <button class="icon-btn" id="sidebar-close" aria-label="Fermer le panneau des épisodes"><span class="icon">✕</span></button>
+        </div>
       </div>
       <div class="sidebar-search">
         <input type="search" id="sidebar-search-input" placeholder="Rechercher un épisode…" aria-label="Rechercher un épisode" />
@@ -34,8 +40,16 @@ export class Sidebar {
       this.renderEpisodeList();
     });
 
+    this.container.querySelector('#sidebar-close')!.addEventListener('click', () => {
+      this.onRequestCloseCb?.();
+    });
+
     this.renderEpisodeList();
     return this.container;
+  }
+
+  onRequestClose(cb: () => void) {
+    this.onRequestCloseCb = cb;
   }
 
   setCollapsed(collapsed: boolean) {

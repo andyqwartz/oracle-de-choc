@@ -10,6 +10,7 @@ export class SettingsDrawer {
   private container: HTMLElement;
   private modelPanel!: HTMLElement;
   private onReloadModel: (() => void) | null = null;
+  private onRequestCloseCb: (() => void) | null = null;
 
   constructor() {
     this.container = document.createElement('aside');
@@ -51,10 +52,14 @@ export class SettingsDrawer {
     this.renderSettings();
 
     this.container.querySelector('#settings-close')!.addEventListener('click', () => {
-      this.collapse();
+      this.onRequestCloseCb?.();
     });
 
     return this.container;
+  }
+
+  onRequestClose(cb: () => void) {
+    this.onRequestCloseCb = cb;
   }
 
   setModelStatus(status: ModelStatus) {

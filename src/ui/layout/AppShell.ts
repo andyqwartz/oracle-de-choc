@@ -4,6 +4,24 @@ import { Sidebar } from './Sidebar';
 import { ChatPanel } from '../chat/ChatPanel';
 import { SettingsDrawer } from '../SettingsDrawer';
 
+const LS_KEY = 'oracle-de-choc:panels';
+
+interface PanelState { sidebarCollapsed: boolean; settingsCollapsed: boolean; }
+
+function loadPanelState(): PanelState {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) {
+      const p = JSON.parse(raw);
+      return {
+        sidebarCollapsed: !!p.sidebarCollapsed,
+        settingsCollapsed: !!p.settingsCollapsed,
+      };
+    }
+  } catch { /* ignore */ }
+  return { sidebarCollapsed: false, settingsCollapsed: false };
+}
+
 export class AppShell {
   private root: HTMLElement;
   private topBar: TopBar;
@@ -11,8 +29,7 @@ export class AppShell {
   private chatPanel: ChatPanel;
   private settingsDrawer: SettingsDrawer;
 
-  private sidebarCollapsed = false;
-  private settingsCollapsed = false;
+  private panelState: PanelState = loadPanelState();
   selectedEpisode: string | null = null;
 
   constructor() {
@@ -25,12 +42,19 @@ export class AppShell {
     this.settingsDrawer = new SettingsDrawer();
   }
 
+  private persist() {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(this.panelState));
+    } catch { /* ignore */ }
+  }
+
   render(container: HTMLElement) {
     container.innerHTML = '';
     container.appendChild(this.root);
 
     // Sidebar (left)
     this.root.appendChild(this.sidebar.render());
+    this.sidebar.setCollapsed(this.panelState.sidebarCollapsed);
 
     // Main column
     const main = document.createElement('div');
@@ -45,9 +69,20 @@ export class AppShell {
 
     this.root.appendChild(main);
 
+    // Apply persisted settings panel state
+    if (this.panelState.settingsCollapsed) {
+      this.settingsDrawer.collapse();
+      this.topBar.setSettingsButtonActive(false);
+    } else {
+      this.topBar.setSettingsButtonActive(true);
+    }
+
     // Wire toggles
     this.topBar.onToggleSidebarClick(() => this.toggleSidebar());
     this.topBar.onToggleSettingsClick(() => this.toggleSettings());
+    // Close buttons inside panels route here so AppShell stays the single source of truth.
+    this.sidebar.onRequestClose(() => this.closeSidebar());
+    this.settingsDrawer.onRequestClose(() => this.closeSettings());
   }
 
   get chatPanelInstance(): ChatPanel { return this.chatPanel; }
@@ -55,19 +90,39 @@ export class AppShell {
   get settingsDrawerInstance(): SettingsDrawer { return this.settingsDrawer; }
 
   toggleSidebar() {
-    this.sidebarCollapsed = !this.sidebarCollapsed;
-    this.sidebar.setCollapsed(this.sidebarCollapsed);
+    if (this.panelState.sidebarCollapsed) this.openSidebar();
+    else this.closeSidebar();
+  }
+
+  private openSidebar() {
+    this.panelState.sidebarCollapsed = false;
+    this.sidebar.setCollapsed(false);
+    this.persist();
+  }
+
+  private closeSidebar() {
+    this.panelState.sidebarCollapsed = true;
+    this.sidebar.setCollapsed(true);
+    this.persist();
   }
 
   toggleSettings() {
-    this.settingsCollapsed = !this.settingsCollapsed;
-    if (this.settingsCollapsed) {
-      this.settingsDrawer.collapse();
-      this.topBar.setSettingsButtonActive(false);
-    } else {
-      this.settingsDrawer.expand();
-      this.topBar.setSettingsButtonActive(true);
-    }
+    if (this.panelState.settingsCollapsed) this.openSettings();
+    else this.closeSettings();
+  }
+
+  private openSettings() {
+    this.panelState.settingsCollapsed = false;
+    this.settingsDrawer.expand();
+    this.topBar.setSettingsButtonActive(true);
+    this.persist();
+  }
+
+  private closeSettings() {
+    this.panelState.settingsCollapsed = true;
+    this.settingsDrawer.collapse();
+    this.topBar.setSettingsButtonActive(false);
+    this.persist();
   }
 
   // ---- Passthroughs ----
