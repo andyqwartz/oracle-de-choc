@@ -9,8 +9,9 @@ export async function embedQuery(text: string): Promise<number[]> {
     _pipeline = await pipeline('feature-extraction', CONFIG.embeddingModel);
   }
 
-  const result = await _pipeline(text);
+  const result = await _pipeline(text, { pooling: 'mean', normalize: true });
   // transformers.js returns a Tensor; its flat data (typed array) is the 384-dim vector.
+  // Must pool (mean) + normalize exactly like build-index.mjs, else we get per-token vectors.
   const vector = Array.isArray(result) ? result : Array.from(result.data);
   return vector;
 }

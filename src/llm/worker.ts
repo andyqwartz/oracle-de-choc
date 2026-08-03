@@ -5,6 +5,13 @@
 import { Wllama } from '@wllama/wllama';
 import type { ChatMessage, GenerationParams } from '../types';
 
+// wllama resolves its wasm/model paths via `new URL(path, document.baseURI)`.
+// Inside a Web Worker there is no `document`, so provide a shim. Paths are
+// root-absolute, so baseURI = self.location.href resolves them correctly.
+if (typeof document === 'undefined') {
+  (globalThis as any).document = { baseURI: self.location.href };
+}
+
 let wllama: Wllama | null = null;
 
 self.onmessage = async (event: MessageEvent) => {
