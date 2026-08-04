@@ -829,6 +829,139 @@ body {
   cursor: not-allowed;
 }
 
+/* Model cache (erase downloaded .gguf files) */
+.model-cache {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+.model-cache-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.76rem;
+  padding: var(--space-1) 0;
+}
+.model-cache-row .k {
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+}
+.model-cache-row .v {
+  color: var(--color-text);
+  text-align: right;
+  font-family: var(--font-mono);
+}
+.model-cache-hint {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  margin-top: var(--space-1);
+}
+
+/* Model presets list (with live weight) */
+.model-presets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+}
+.model-preset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.76rem;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.model-preset:hover {
+  border-color: var(--color-accent);
+}
+.model-preset.active {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+.model-preset .mp-label {
+  font-family: var(--font-mono);
+  color: var(--color-text);
+}
+.model-preset .mp-size {
+  font-family: var(--font-mono);
+  color: var(--color-text-dim);
+  white-space: nowrap;
+}
+
+/* Hugging Face model search */
+.hf-search {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+.hf-search-row {
+  display: flex;
+  gap: var(--space-2);
+}
+.hf-search-row input[type='search'] {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+}
+.hf-search-row input[type='search']:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.hf-search-row .btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.hf-results {
+  margin-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.hf-status {
+  font-size: 0.7rem;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+}
+.hf-status.error {
+  color: var(--color-error);
+}
+.hf-result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.hf-result-title {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--color-text);
+}
+.hf-result-repo {
+  font-size: 0.66rem;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+}
+.hf-result .btn {
+  flex: 0 0 auto;
+  padding: var(--space-1) var(--space-2);
+  font-size: 0.72rem;
+}
+
 /* =====================  WELCOME / EMPTY STATE  ===================== */
 .welcome {
   display: flex;

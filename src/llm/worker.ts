@@ -95,6 +95,25 @@ self.onmessage = async (event: MessageEvent) => {
         break;
       }
 
+      case 'clear-cache': {
+        // Erase all downloaded model files from the browser's persistent
+        // storage (OPFS / COS). wllama's CacheManager owns those files; the
+        // current in-memory model keeps working, but the next reload will have
+        // to re-download the GGUF.
+        let cache = wllama?.cacheManager ?? null;
+        if (!cache) {
+          // Model never initialized — still allow clearing (e.g. stale files).
+          const { CacheManager } = await import('@wllama/wllama');
+          cache = new CacheManager();
+        }
+        const entries = await cache.list();
+        const count = entries.length;
+        const freedBytes = entries.reduce((acc, e) => acc + (e.size || 0), 0);
+        await cache.clear();
+        self.postMessage({ type: 'cache-cleared', id, count, freedBytes });
+        break;
+      }
+
       case 'abort': {
         // Signal a stop to the running completion by discarding the instance.
         // (wllama's createChatCompletion is awaited; a full stop requires an abort

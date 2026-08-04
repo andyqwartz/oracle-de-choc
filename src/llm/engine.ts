@@ -4,7 +4,7 @@
 
 import type { ChatMessage, GenerationParams, ModelStatus } from '../types';
 import { getSettings } from '../settings/store';
-import { getModelDef } from '../config';
+import { resolveModel } from '../config';
 
 interface WorkerMessage {
   type: string;
@@ -14,6 +14,8 @@ interface WorkerMessage {
   text?: string;
   message?: string;
   status?: ModelStatus;
+  count?: number;
+  freedBytes?: number;
 }
 
 let worker: Worker | null = null;
@@ -76,7 +78,7 @@ export async function initEngine(
       type: 'init',
       params: {
         n_ctx: settings.n_ctx,
-        model: getModelDef(settings.model),
+        model: resolveModel(settings.model),
       },
     });
   });
@@ -126,4 +128,34 @@ export function abort(): void {
     worker.postMessage({ type: 'abort', id: currentGenerateId });
     currentGenerateId = null;
   }
+}
+
+export interface CacheClearResult {
+  count: number;
+  freedBytes: number;
+}
+
+/**
+ * Erase all downloaded model files from the browser's persistent storage
+ * (wllama caches GGUFs in OPFS / COS). The in-memory model keeps working for
+ * this session; the next reload re-downloads the model.
+ */
+export function clearModelCache(): Promise<CacheClearResult> {
+  const w = getWorker();
+  const id = crypto.randomUUID();
+
+  return new Promise<CacheClearResult>((resolve, reject) => {
+    const handler = (event: MessageEvent) => {
+      const msg = event.data as WorkerMessage;
+      if (msg.id !== id) return;
+      w.removeEventListener('message', handler);
+      if (msg.type === 'cache-cleared') {
+        resolve({ count: msg.count ?? 0, freedBytes: msg.freedBytes ?? 0 });
+      } else if (msg.type === 'error') {
+        reject(new Error(msg.message ?? 'Échec de la suppression du cache'));
+      }
+    };
+    w.addEventListener('message', handler);
+    w.postMessage({ type: 'clear-cache', id });
+  });
 }

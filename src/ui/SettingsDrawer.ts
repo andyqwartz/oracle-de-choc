@@ -2,14 +2,17 @@
 // Right panel: model status + settings generated from the schema, grouped by section.
 
 import { SETTINGS_SCHEMA, type SettingsSchema } from '../settings/schema';
-import { getSettings, setSetting, resetSettings } from '../settings/store';
-import { MODELS, getModelDef } from '../config';
+import { getSettings, setSetting } from '../settings/store';
+import { MODELS, resolveModel, type ModelDef } from '../config';
+import { searchGgufModels, ggufFileSize, fmtBytes, type HfModelCandidate } from '../llm/hf';
 import type { ModelStatus } from '../types';
 
 export class SettingsDrawer {
   private container: HTMLElement;
   private modelPanel!: HTMLElement;
+  private cacheStatusEl!: HTMLElement;
   private onReloadModel: (() => void) | null = null;
+  private onClearCache: (() => void) | null = null;
   private onRequestCloseCb: (() => void) | null = null;
 
   constructor() {
@@ -29,6 +32,30 @@ export class SettingsDrawer {
       <section aria-label="Modèle">
         <div class="settings-section-title">Modèle</div>
         <div class="model-panel" id="model-panel"></div>
+
+        <div class="setting-row">
+          <label for="model-presets">Modèle pré-réglé</label>
+          <div class="model-presets" id="model-presets"></div>
+        </div>
+
+        <div class="hf-search">
+          <div class="hf-search-row">
+            <input type="search" id="hf-search" placeholder="Chercher un modèle GGUF sur Hugging Face…" autocomplete="off" />
+            <button class="btn" id="hf-search-go">Rechercher</button>
+          </div>
+          <div class="hf-results" id="hf-results"></div>
+        </div>
+
+        <div class="model-cache">
+          <div class="model-cache-row">
+            <span class="k">Stockage modèle</span>
+            <span class="v" id="cache-status">…</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn" id="clear-cache">Vider le cache du modèle</button>
+          </div>
+          <p class="model-cache-hint">Supprime les fichiers .gguf téléchargés du stockage du navigateur. Le modèle actuel reste actif ; au prochain chargement il sera re-téléchargé.</p>
+        </div>
       </section>
 
       <section aria-label="Génération">
@@ -48,11 +75,19 @@ export class SettingsDrawer {
     `;
 
     this.modelPanel = this.container.querySelector('#model-panel')!;
+    this.cacheStatusEl = this.container.querySelector('#cache-status')!;
     this.renderModelPanel({ state: 'idle' as const, progress: 0 });
+    this.renderModelPresets();
     this.renderSettings();
+    this.wireHfSearch();
 
     this.container.querySelector('#settings-close')!.addEventListener('click', () => {
       this.onRequestCloseCb?.();
+    });
+
+    this.container.querySelector('#clear-cache')!.addEventListener('click', () => {
+      this.setCacheStatus('Suppression…');
+      this.onClearCache?.();
     });
 
     return this.container;
@@ -68,6 +103,121 @@ export class SettingsDrawer {
 
   onReloadModelRequested(cb: () => void) {
     this.onReloadModel = cb;
+  }
+
+  onClearCacheRequested(cb: () => void) {
+    this.onClearCache = cb;
+  }
+
+  /** Update the "Stockage modèle" line (cache size / clear result). */
+  setCacheStatus(text: string) {
+    if (this.cacheStatusEl) this.cacheStatusEl.textContent = text;
+  }
+
+  // ---- Model presets (with live weight) ----
+  private async renderModelPresets() {
+    const box = this.container.querySelector('#model-presets')!;
+    const selectedId = getSettings().model; // preset id or JSON for custom
+    box.innerHTML = '';
+
+    for (const m of MODELS) {
+      const row = document.createElement('div');
+      row.className = 'model-preset' + (m.id === selectedId ? ' active' : '');
+      row.setAttribute('role', 'button');
+      row.tabIndex = 0;
+
+      const label = document.createElement('span');
+      label.className = 'mp-label';
+      label.textContent = `${m.label} (${m.params})`;
+      const size = document.createElement('span');
+      size.className = 'mp-size';
+      size.textContent = '…';
+
+      row.append(label, size);
+      const onClick = () => this.applyModel(m.id);
+      row.addEventListener('click', onClick);
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      });
+      box.appendChild(row);
+
+      ggufFileSize(m.repo, m.file)
+        .then((b) => {
+          if (b) size.textContent = fmtBytes(b);
+        })
+        .catch(() => {
+          size.textContent = ''; // fallback silent
+        });
+    }
+  }
+
+  // ---- HF search ----
+  private wireHfSearch() {
+    const input = this.container.querySelector('#hf-search') as HTMLInputElement;
+    const goBtn = this.container.querySelector('#hf-search-go') as HTMLButtonElement;
+    const results = this.container.querySelector('#hf-results')!;
+
+    const run = async () => {
+      results.innerHTML = '<div class="hf-status">Recherche…</div>';
+      try {
+        const items = await searchGgufModels(input.value);
+        if (items.length === 0) {
+          results.innerHTML = '<div class="hf-status">Aucun modèle léger trouvé (max ~3,5 Go).</div>';
+          return;
+        }
+        results.innerHTML = '';
+        const count = document.createElement('div');
+        count.className = 'hf-status';
+        count.textContent = `${items.length} modèle(s) léger(s) disponible(s) :`;
+        results.appendChild(count);
+
+        for (const it of items) {
+          const item = document.createElement('div');
+          item.className = 'hf-result';
+          const txt = document.createElement('div');
+          txt.className = 'hf-result-title';
+          txt.textContent = `${it.label} — ${fmtBytes(it.sizeBytes)}`;
+          const sub = document.createElement('div');
+          sub.className = 'hf-result-repo';
+          sub.textContent = it.repo;
+          const btn = document.createElement('button');
+          btn.className = 'btn';
+          btn.textContent = 'Utiliser';
+          btn.addEventListener('click', () => this.applyModel(it));
+          item.append(txt, sub, btn);
+          results.appendChild(item);
+        }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        results.innerHTML = `<div class="hf-status error">Erreur : ${msg}</div>`;
+      }
+    };
+
+    goBtn.addEventListener('click', run);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') run();
+    });
+  }
+
+  /** Apply a preset (by id) or a custom HF result, then reload the model. */
+  private applyModel(m: string | HfModelCandidate) {
+    if (typeof m === 'string') {
+      setSetting('model' as any, m);
+    } else {
+      const def: ModelDef = {
+        id: 'custom',
+        repo: m.repo,
+        file: m.file,
+        label: m.label,
+        params: fmtBytes(m.sizeBytes),
+      };
+      setSetting('model' as any, JSON.stringify(def));
+    }
+    this.renderModelPresets();
+    this.onReloadModel?.();
   }
 
   private renderModelPanel(status: ModelStatus) {
@@ -86,8 +236,10 @@ export class SettingsDrawer {
         </div>`;
     }
 
+    const current = resolveModel(getSettings().model);
     this.modelPanel.innerHTML = `
-      <div class="model-row"><span class="k">Modèle</span><span class="v">${getModelDef(getSettings().model).label} · Q4_K_M</span></div>
+      <div class="model-row"><span class="k">Modèle</span><span class="v">${current.label}</span></div>
+      <div class="model-row"><span class="k">Référence</span><span class="v">${current.repo}/${current.file}</span></div>
       <div class="model-row"><span class="k">Statut</span><span class="v">${this.fmtState(status.state)}</span></div>
       <div class="model-row"><span class="k">Index</span><span class="v">242 épisodes</span></div>
       ${progressHtml}
@@ -118,7 +270,7 @@ export class SettingsDrawer {
       system: [],
     };
 
-    const genKeys = ['model', 'temperature', 'top_k', 'top_p', 'repeat_penalty', 'n_predict', 'n_ctx'];
+    const genKeys = ['temperature', 'top_k', 'top_p', 'repeat_penalty', 'n_predict', 'n_ctx'];
     const ragKeys = ['ragEnabled', 'ragTopK'];
     const sysKeys = ['systemPrompt'];
 

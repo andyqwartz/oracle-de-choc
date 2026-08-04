@@ -135,6 +135,8 @@ export class AppShell {
   onStop(cb: () => void) { this.chatPanel.onStop(cb); }
   onSidebarSelect(cb: (ep: string | null) => void) { this.sidebar.onSelect(cb); }
   onReloadModel(cb: () => void) { this.settingsDrawer.onReloadModelRequested(cb); }
+  onClearCache(cb: () => void) { this.settingsDrawer.onClearCacheRequested(cb); }
+  setCacheStatus(t: string) { this.settingsDrawer.setCacheStatus(t); }
 
   // Convenience accessors for main.ts
   appendMessage(role: 'user' | 'assistant' | 'system', content: string, sources?: any[]) {

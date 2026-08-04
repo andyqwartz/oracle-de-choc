@@ -111,8 +111,9 @@ src/
 Les paramètres sont persistés dans `localStorage` sous la clé
 `oracle-de-choc:settings` et générés depuis `src/settings/schema.ts` :
 
-- **Modèle** — sélection du GGUF (changer de modèle déclenche un rechargement
-  et un re-téléchargement du nouveau fichier)
+- **Modèle** — sélection d'un GGUF pré-réglé (avec poids en direct affiché) ou
+  recherche d'un modèle personnalisé sur Hugging Face ; changer de modèle
+  déclenche un rechargement et un re-téléchargement du nouveau fichier.
 - **Génération** — `temperature`, `top_k`, `top_p`, `repeat_penalty`,
   `n_predict` (max tokens), `n_ctx` (contexte alloué au chargement)
 - **Recherche** — `ragEnabled`, `ragTopK`
@@ -121,6 +122,20 @@ Les paramètres sont persistés dans `localStorage` sous la clé
 > **Contexte (n_ctx)** : paramètre passé au chargement du modèle dans wllama.
 > La valeur par défaut de wllama (1024) est trop petite pour RAG + prompt +
 > historique ; la valeur configurée est transmise au worker à `init`.
+
+### Modèle : poids & recherche HF
+
+- **Poids affiché** : chaque modèle pré-réglé (et chaque résultat de recherche)
+  affiche sa taille réelle du fichier `.gguf` (récupérée via l'API HF, `HEAD`
+  pour les pré-réglés, `?blobs=true` pour la recherche).
+- **Recherche HF** (`src/llm/hf.ts`) : interroge `https://huggingface.co/api/
+  models?search=…&filter=gguf`, filtre sur des fichiers **GGuF légers** (
+  `q2_k`…`q8_0`, < ~2.2 Go, plans sans sous-dossier, sans mmproj/imatrix/split)
+  compatibles wllama (llama.cpp WASM). "Utiliser" applique le modèle et recharge.
+- **Vider le cache** : bouton "Vider le cache du modèle" supprime les `.gguf`
+  téléchargés du stockage persistant du navigateur (OPFS/COS via
+  `wllama.cacheManager.clear()`). Le modèle actif reste en mémoire ; au
+  prochain chargement il sera re-téléchargé.
 
 ## Modèles de remplacement
 

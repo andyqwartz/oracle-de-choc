@@ -42,6 +42,39 @@ export const MODELS: ModelDef[] = [
 
 export const DEFAULT_MODEL_ID = 'qwen-0.5b';
 
+/**
+ * Resolve a stored model value into a full ModelDef.
+ * Accepts a preset id ('qwen-0.5b') or a custom ModelDef object (from HF search).
+ */
+export type StoredModel = string | ModelDef;
+
+export function resolveModel(value: StoredModel | undefined | null): ModelDef {
+  if (typeof value === 'string' && value.startsWith('{')) {
+    // Custom model stored as JSON-serialized ModelDef.
+    try {
+      const obj = JSON.parse(value) as ModelDef;
+      if (obj.repo && obj.file) return normalizeCustom(obj);
+    } catch {
+      /* fall through to default */
+    }
+    return MODELS[0];
+  }
+  if (value && typeof value !== 'string') {
+    return normalizeCustom(value as ModelDef);
+  }
+  return getModelDef(typeof value === 'string' ? value : DEFAULT_MODEL_ID);
+}
+
+function normalizeCustom(value: ModelDef): ModelDef {
+  return {
+    id: value.id ?? 'custom',
+    repo: value.repo,
+    file: value.file,
+    label: value.label || value.file.replace(/\.gguf$/i, ''),
+    params: value.params || '',
+  };
+}
+
 export function getModelDef(id: string): ModelDef {
   return MODELS.find((m) => m.id === id) ?? MODELS[0];
 }

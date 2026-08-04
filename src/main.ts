@@ -3,7 +3,7 @@
 
 import './ui/styles/tokens.css';
 import './ui/styles/app.css';
-import { initEngine, generate, abort } from './llm/engine';
+import { initEngine, generate, abort, clearModelCache } from './llm/engine';
 import { loadIndex, type CompactIndex } from './rag/loadIndex';
 import { loadEpisodes } from './rag/episodes';
 import { retrieve, buildContextBlock } from './rag/retrieve';
@@ -144,6 +144,25 @@ async function main() {
   });
   app.onReloadModel(() => {
     location.reload();
+  });
+  app.onClearCache(async () => {
+    try {
+      const res = await clearModelCache();
+      const mb = (res.freedBytes / (1024 * 1024)).toFixed(1);
+      app.setCacheStatus(
+        res.count > 0
+          ? `Vidé (${res.count} fichier${res.count > 1 ? 's' : ''}, ${mb} Mo libérés)`
+          : 'Vidé (aucun fichier en cache)'
+      );
+      app.setStatus(
+        res.count > 0 ? `Cache du modèle vidé (${mb} Mo libérés).` : 'Cache déjà vide.',
+        'ok'
+      );
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      app.setCacheStatus('Erreur');
+      app.setStatus('Erreur cache : ' + msg, 'error');
+    }
   });
 
   try {
