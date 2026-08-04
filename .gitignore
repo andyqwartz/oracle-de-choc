@@ -15,5 +15,8 @@ data/transcripts/
 # Dev notes
 WLLAMA-API-NOTES.md
 
+# Project memory bank (local only, cross-session context)
+memory-bank/
+
 # OS
 .DS_Store
