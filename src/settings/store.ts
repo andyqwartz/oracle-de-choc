@@ -1,5 +1,6 @@
 // src/settings/store.ts
 import { SETTINGS_SCHEMA, type SettingsSchema } from './schema';
+import { DEFAULT_MODEL_ID } from '../config';
 
 export type Settings = {
   [K in keyof SettingsSchema]: SettingsSchema[K]['default'];
@@ -9,6 +10,7 @@ const STORAGE_KEY = 'oracle-de-choc:settings';
 
 function getDefaultSettings(): Settings {
   return {
+    model: DEFAULT_MODEL_ID,
     temperature: 0.7,
     top_k: 40,
     top_p: 0.9,

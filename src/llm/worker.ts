@@ -31,11 +31,16 @@ self.onmessage = async (event: MessageEvent) => {
         // the configured value here — RAG context + system prompt + history can
         // exceed 1024 tokens and would otherwise fail with "exceeds context size".
         const nCtx = params?.n_ctx ?? 4096;
+        // Selected GGUF model (repo + file), passed from settings by the engine.
+        const model = params?.model ?? {
+          repo: 'Qwen/Qwen2.5-0.5B-Instruct-GGUF',
+          file: 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
+        };
 
         await wllama.loadModelFromHF(
           {
-            repo: 'Qwen/Qwen2.5-0.5B-Instruct-GGUF',
-            file: 'qwen2.5-0.5b-instruct-q4_k_m.gguf',
+            repo: model.repo,
+            file: model.file,
           },
           {
             n_ctx: nCtx,

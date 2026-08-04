@@ -2,7 +2,10 @@
 // Locked schema — every parameter the user can tune.
 // Do not add or remove entries at build time.
 
+import { MODELS, DEFAULT_MODEL_ID } from '../config';
+
 export interface SettingsSchema {
+  model: { type: 'select'; options: string[]; default: string };
   temperature: { type: 'number'; min: 0; max: 2; step: 0.05; default: 0.7 };
   top_k: { type: 'number'; min: 1; max: 100; step: 1; default: 40 };
   top_p: { type: 'number'; min: 0; max: 1; step: 0.05; default: 0.9 };
@@ -15,6 +18,7 @@ export interface SettingsSchema {
 }
 
 export const SETTINGS_SCHEMA: SettingsSchema = {
+  model: { type: 'select', options: MODELS.map((m) => m.id), default: DEFAULT_MODEL_ID },
   temperature: { type: 'number', min: 0, max: 2, step: 0.05, default: 0.7 },
   top_k: { type: 'number', min: 1, max: 100, step: 1, default: 40 },
   top_p: { type: 'number', min: 0, max: 1, step: 0.05, default: 0.9 },

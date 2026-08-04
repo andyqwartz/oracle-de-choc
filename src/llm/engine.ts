@@ -4,6 +4,7 @@
 
 import type { ChatMessage, GenerationParams, ModelStatus } from '../types';
 import { getSettings } from '../settings/store';
+import { getModelDef } from '../config';
 
 interface WorkerMessage {
   type: string;
@@ -68,10 +69,16 @@ export async function initEngine(
     };
 
     w.addEventListener('message', handler);
-    // Pass n_ctx (a model-loading param in wllama) so the worker allocates enough
-    // context for RAG + system prompt + history. Default is 1024 (too small).
+    // Pass n_ctx and the selected model (both are load-time params in wllama)
+    // so the worker allocates enough context and loads the right GGUF.
     const settings = getSettings();
-    w.postMessage({ type: 'init', params: { n_ctx: settings.n_ctx } });
+    w.postMessage({
+      type: 'init',
+      params: {
+        n_ctx: settings.n_ctx,
+        model: getModelDef(settings.model),
+      },
+    });
   });
 }
 

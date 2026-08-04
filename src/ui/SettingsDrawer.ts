@@ -3,7 +3,7 @@
 
 import { SETTINGS_SCHEMA, type SettingsSchema } from '../settings/schema';
 import { getSettings, setSetting, resetSettings } from '../settings/store';
-import { CONFIG } from '../config';
+import { MODELS, getModelDef } from '../config';
 import type { ModelStatus } from '../types';
 
 export class SettingsDrawer {
@@ -87,7 +87,7 @@ export class SettingsDrawer {
     }
 
     this.modelPanel.innerHTML = `
-      <div class="model-row"><span class="k">Modèle</span><span class="v">Qwen2.5-0.5B · Q4_K_M</span></div>
+      <div class="model-row"><span class="k">Modèle</span><span class="v">${getModelDef(getSettings().model).label} · Q4_K_M</span></div>
       <div class="model-row"><span class="k">Statut</span><span class="v">${this.fmtState(status.state)}</span></div>
       <div class="model-row"><span class="k">Index</span><span class="v">242 épisodes</span></div>
       ${progressHtml}
@@ -118,7 +118,7 @@ export class SettingsDrawer {
       system: [],
     };
 
-    const genKeys = ['temperature', 'top_k', 'top_p', 'repeat_penalty', 'n_predict', 'n_ctx'];
+    const genKeys = ['model', 'temperature', 'top_k', 'top_p', 'repeat_penalty', 'n_predict', 'n_ctx'];
     const ragKeys = ['ragEnabled', 'ragTopK'];
     const sysKeys = ['systemPrompt'];
 
@@ -147,6 +147,7 @@ export class SettingsDrawer {
 
   private fmtKey(key: string): string {
     const map: Record<string, string> = {
+      model: 'Modèle',
       temperature: 'Température',
       top_k: 'Top K',
       top_p: 'Top P',
@@ -158,6 +159,16 @@ export class SettingsDrawer {
       systemPrompt: 'Prompt système',
     };
     return map[key] ?? key;
+  }
+
+  // Maps a raw stored value to a friendly option label for select controls.
+  private fmtOption(key: string, value: string): string {
+    if (key === 'model') {
+      const def = MODELS.find((m) => m.id === value);
+      return def ? `${def.label} (${def.params})` : value;
+    }
+    if (key === 'n_ctx') return `${value} tokens`;
+    return value;
   }
 
   private renderControl(
@@ -211,11 +222,18 @@ export class SettingsDrawer {
     for (const opt of spec.options) {
       const option = document.createElement('option');
       option.value = String(opt);
-      option.textContent = String(opt);
-      if (opt === (currentValue ?? spec.default)) option.selected = true;
+      option.textContent = this.fmtOption(key, String(opt));
+      if (String(opt) === String(currentValue ?? spec.default)) option.selected = true;
       select.appendChild(option);
     }
-    select.addEventListener('change', () => setSetting(key as any, parseInt(select.value, 10)));
+    select.addEventListener('change', () => {
+      const raw = select.value;
+      // Number-typed selects (n_ctx) store integers; string-typed (model) store the id as-is.
+      const isNumeric = typeof spec.options[0] === 'number';
+      setSetting(key as any, isNumeric ? parseInt(raw, 10) : raw);
+      // Switching the model requires a full reload to (re)download the new GGUF.
+      if (key === 'model') this.onReloadModel?.();
+    });
     row.appendChild(select);
   }
 
